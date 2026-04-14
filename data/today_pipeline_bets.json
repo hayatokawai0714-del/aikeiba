@@ -1,0 +1,47 @@
+[
+  {
+    "race_id": "20260414-NAK-11R",
+    "race_no": 11,
+    "venue": "中山",
+    "pair": "3-12",
+    "axis_horse": 3,
+    "partner_horse": 12,
+    "pair_score": 83,
+    "expected_value": 1.34,
+    "top3_rate_pair": 0.38,
+    "value_label": "高",
+    "wide_odds_est": 9.8,
+    "recommendation": 91,
+    "selected_stage": "A"
+  },
+  {
+    "race_id": "20260414-NAK-11R",
+    "race_no": 11,
+    "venue": "中山",
+    "pair": "3-8",
+    "axis_horse": 3,
+    "partner_horse": 8,
+    "pair_score": 77,
+    "expected_value": 1.17,
+    "top3_rate_pair": 0.44,
+    "value_label": "中",
+    "wide_odds_est": 6.1,
+    "recommendation": 79,
+    "selected_stage": "B"
+  },
+  {
+    "race_id": "20260414-HAN-10R",
+    "race_no": 10,
+    "venue": "阪神",
+    "pair": "1-6",
+    "axis_horse": 1,
+    "partner_horse": 6,
+    "pair_score": 74,
+    "expected_value": 1.15,
+    "top3_rate_pair": 0.36,
+    "value_label": "中",
+    "wide_odds_est": 7.3,
+    "recommendation": 75,
+    "selected_stage": "B"
+  }
+]

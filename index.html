@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>競馬AIダッシュボード</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>競馬AIダッシュボード</h1>
+      <p id="todayLabel"></p>
+    </div>
+    <nav class="tabs">
+      <a href="#top" data-route="top">トップ</a>
+      <a href="#wide" data-route="wide">ワイド候補</a>
+      <a href="#skip" data-route="skip">見送り</a>
+    </nav>
+  </header>
+
+  <section class="filter-bar" id="globalFilters"></section>
+
+  <main id="app"></main>
+
+  <template id="raceCardTemplate">
+    <article class="race-card">
+      <div class="race-head">
+        <h3></h3>
+        <span class="badge"></span>
+      </div>
+      <dl class="race-meta"></dl>
+      <div class="race-actions">
+        <button class="secondary">詳細を見る</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>

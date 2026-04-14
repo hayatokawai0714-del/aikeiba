@@ -1,0 +1,268 @@
+:root {
+  --bg: #0f131b;
+  --bg-elev: #181e2a;
+  --bg-soft: #1e2635;
+  --text: #e7edf7;
+  --muted: #9ba8bf;
+  --line: #2d3850;
+  --ok: #29c274;
+  --warn: #f3be45;
+  --danger: #ef6a6a;
+  --skip: #8f98ab;
+  --axis: #4ea8ff;
+  --value: #b181ff;
+  --accent: #35d0ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% -20%, #223456 0%, transparent 55%),
+    radial-gradient(circle at 95% 0%, #2f2348 0%, transparent 55%),
+    var(--bg);
+  font-family: "Yu Gothic UI", "Meiryo", sans-serif;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(10, 14, 20, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.brand p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tabs a {
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+}
+
+.tabs a.active {
+  color: #001623;
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.filter-bar {
+  position: sticky;
+  top: 76px;
+  z-index: 9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(16, 21, 31, 0.92);
+  border-bottom: 1px solid var(--line);
+}
+
+select,
+button,
+input {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  padding: 0.45rem 0.6rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.secondary {
+  background: transparent;
+}
+
+main {
+  padding: 1.2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 0.9rem;
+}
+
+.race-card {
+  background: linear-gradient(165deg, rgba(42, 53, 75, 0.55), rgba(20, 25, 35, 0.85));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.race-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.race-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.buy {
+  color: #072816;
+  background: var(--ok);
+}
+
+.skip {
+  color: #111723;
+  background: var(--skip);
+}
+
+.race-meta {
+  margin: 0.65rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.45rem;
+  column-gap: 0.7rem;
+}
+
+.race-meta dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.race-meta dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+}
+
+.panel {
+  background: rgba(23, 29, 40, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.95rem;
+  margin-bottom: 0.9rem;
+}
+
+.panel h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.02rem;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #151c29;
+  text-align: left;
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding: 0.6rem;
+}
+
+tbody td {
+  padding: 0.58rem;
+  border-bottom: 1px solid #222d41;
+  font-size: 0.86rem;
+}
+
+tbody tr:hover {
+  background: #1b2435;
+}
+
+.pill {
+  padding: 0.18rem 0.52rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.axis {
+  background: color-mix(in srgb, var(--axis), transparent 72%);
+  color: #cbe8ff;
+}
+
+.value {
+  background: color-mix(in srgb, var(--value), transparent 72%);
+  color: #efddff;
+}
+
+.high {
+  color: var(--ok);
+  font-weight: 700;
+}
+
+.low {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.warning {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .topbar,
+  .filter-bar {
+    position: static;
+  }
+
+  main {
+    padding: 0.8rem;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+}
