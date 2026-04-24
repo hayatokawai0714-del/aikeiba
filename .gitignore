@@ -1,0 +1,12 @@
+C:/TXT/
+TXT/
+*.csv
+*.txt
+*.log
+*.bak
+data/raw/
+data/normalized/
+data/warehouse/*.duckdb
+data/warehouse/*.bak*
+__pycache__/
+*.pyc
