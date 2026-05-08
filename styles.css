@@ -12,18 +12,47 @@
   --axis: #4ea8ff;
   --value: #b181ff;
   --accent: #35d0ff;
+  --bg-grad-a: #223456;
+  --bg-grad-b: #2f2348;
+  --topbar-bg: rgba(10, 14, 20, 0.92);
+  --filter-bg: rgba(16, 21, 31, 0.92);
+  --card-grad-a: rgba(42, 53, 75, 0.55);
+  --card-grad-b: rgba(20, 25, 35, 0.85);
+  --panel-bg: rgba(23, 29, 40, 0.92);
+  --table-head-bg: #151c29;
+  --table-row-line: #222d41;
+  --table-row-hover: #1b2435;
 }
 
 * {
   box-sizing: border-box;
 }
 
+body.light {
+  --bg: #f4f7fc;
+  --bg-elev: #ffffff;
+  --bg-soft: #f0f3f9;
+  --text: #1a2333;
+  --muted: #5f6d86;
+  --line: #d6deec;
+  --bg-grad-a: #dbe8ff;
+  --bg-grad-b: #efe6ff;
+  --topbar-bg: rgba(248, 251, 255, 0.95);
+  --filter-bg: rgba(246, 249, 255, 0.95);
+  --card-grad-a: rgba(245, 248, 255, 0.95);
+  --card-grad-b: rgba(236, 242, 252, 0.95);
+  --panel-bg: rgba(255, 255, 255, 0.96);
+  --table-head-bg: #eef3fb;
+  --table-row-line: #e2e9f5;
+  --table-row-hover: #f3f7ff;
+}
+
 body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(circle at 10% -20%, #223456 0%, transparent 55%),
-    radial-gradient(circle at 95% 0%, #2f2348 0%, transparent 55%),
+    radial-gradient(circle at 10% -20%, var(--bg-grad-a) 0%, transparent 55%),
+    radial-gradient(circle at 95% 0%, var(--bg-grad-b) 0%, transparent 55%),
     var(--bg);
   font-family: "Yu Gothic UI", "Meiryo", sans-serif;
 }
@@ -37,7 +66,7 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  background: rgba(10, 14, 20, 0.92);
+  background: var(--topbar-bg);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(8px);
 }
@@ -83,8 +112,12 @@ body {
   flex-wrap: wrap;
   gap: 0.6rem;
   padding: 0.85rem 1.25rem;
-  background: rgba(16, 21, 31, 0.92);
+  background: var(--filter-bg);
   border-bottom: 1px solid var(--line);
+}
+
+.theme-toggle {
+  min-width: 62px;
 }
 
 select,
@@ -116,7 +149,7 @@ main {
 }
 
 .race-card {
-  background: linear-gradient(165deg, rgba(42, 53, 75, 0.55), rgba(20, 25, 35, 0.85));
+  background: linear-gradient(165deg, var(--card-grad-a), var(--card-grad-b));
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.9rem;
@@ -171,7 +204,7 @@ main {
 }
 
 .panel {
-  background: rgba(23, 29, 40, 0.92);
+  background: var(--panel-bg);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.95rem;
@@ -198,7 +231,7 @@ table {
 thead th {
   position: sticky;
   top: 0;
-  background: #151c29;
+  background: var(--table-head-bg);
   text-align: left;
   font-size: 0.82rem;
   color: var(--muted);
@@ -208,12 +241,12 @@ thead th {
 
 tbody td {
   padding: 0.58rem;
-  border-bottom: 1px solid #222d41;
+  border-bottom: 1px solid var(--table-row-line);
   font-size: 0.86rem;
 }
 
 tbody tr:hover {
-  background: #1b2435;
+  background: var(--table-row-hover);
 }
 
 .pill {
@@ -250,6 +283,97 @@ tbody tr:hover {
 
 .muted {
   color: var(--muted);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.65rem;
+}
+
+.meta-grid dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.meta-grid dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+}
+
+.best-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.7rem;
+}
+
+.best-card,
+.ranking-card,
+.issue-grid article {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(27, 35, 50, 0.7);
+  padding: 0.75rem;
+}
+
+.best-card h3,
+.ranking-card h3,
+.issue-grid h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.9rem;
+}
+
+.best-card p {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+}
+
+.ranking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.7rem;
+}
+
+.ranking-card ol {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.ranking-card li {
+  margin: 0.25rem 0;
+  font-size: 0.84rem;
+}
+
+.issue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.7rem;
+}
+
+.issue-grid p,
+.issue-grid li {
+  margin: 0.2rem 0;
+  font-size: 0.84rem;
+}
+
+.status.ok {
+  background: color-mix(in srgb, var(--ok), transparent 70%);
+  color: #d6ffea;
+}
+
+.status.warning {
+  background: color-mix(in srgb, var(--warn), transparent 70%);
+  color: #ffe9b6;
+}
+
+.status.danger {
+  background: color-mix(in srgb, var(--danger), transparent 70%);
+  color: #ffd8d8;
+}
+
+.row-mismatch {
+  opacity: 0.68;
+  background: color-mix(in srgb, var(--danger), transparent 92%);
 }
 
 @media (max-width: 900px) {

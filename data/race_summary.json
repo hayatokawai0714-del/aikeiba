@@ -1,13 +1,1 @@
-[
-  {
-    "race_id": "20260414-FUK-09R",
-    "reason": "上位人気集中 + AI市場差が小さい",
-    "popular_concentration": true,
-    "small_ai_market_gap": true,
-    "data_shortage": false,
-    "density_top3_excess": true,
-    "gap12_shortage": true,
-    "odds_unstable": false,
-    "horse_id_missing": false
-  }
-]
+[]

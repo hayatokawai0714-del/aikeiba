@@ -1,0 +1,15 @@
+# JOIN Quality Audit
+- rows: 91936
+- results_join_success_rate: 0.4429
+- payout_join_success_rate(ok/rows): 0.0247
+- actual_wide_hit_missing_count: 51217
+- wide_payout_missing_count: 46466
+- hit_but_payout_missing_count: 0
+- payout_present_but_hit_na_count: 4751
+- pair_norm_unmatched_or_invalid_count: 0
+- raw_actual_wide_hit_coverage: 0.989417
+- quality_filtered_actual_wide_hit_coverage: 0.442906
+- quality_ok_race_count: 947
+- quality_ng_race_count: 1201
+- quality_ok_candidate_count: 40719
+- quality_ng_candidate_count: 51217

@@ -1,41 +1,90 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>競馬AIダッシュボード</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <title>Keiba AI Dashboard</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <h1>競馬AIダッシュボード</h1>
-      <p id="todayLabel"></p>
-    </div>
-    <nav class="tabs">
-      <a href="#top" data-route="top">トップ</a>
-      <a href="#wide" data-route="wide">ワイド候補</a>
-      <a href="#skip" data-route="skip">見送り</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="app-header">
+      <p class="eyebrow">Aikeiba Phase-2</p>
+      <h1>当日のレース選択</h1>
+      <p id="todayLabel" class="sub-text"></p>
+    </header>
 
-  <section class="filter-bar" id="globalFilters"></section>
+    <section class="control-panel">
+      <p id="apiStatus" class="api-status status-ok">API: 使用しない（ローカルJSON表示のみ）</p>
 
-  <main id="app"></main>
+            <!-- Token-less mode: dashboard calls local API without an API token. -->
+      <div class="control-row" hidden>
+        <input id="tokenInput" type="password" placeholder="APIトークン" autocomplete="off" />
+        <button id="saveTokenBtn" type="button" class="control-btn">保存</button>
+      </div>
+
+      <div class="control-row">
+        <input id="todayDateInput" type="date" />
+        <input id="oddsCutoffInput" type="datetime-local" />
+      </div>
+      <details class="ops-help" hidden>
+        <summary class="ops-help-summary">操作手順を表示</summary>
+        <pre class="ops-help-text">TARGET/JRA-VANのデータ更新後に「当日のレース選択を更新」を押してください。
+必要入力:
+- today_date: 対象日
+- odds_cutoff: オッズ取得時刻
+
+ログ:
+C:\Users\HND2205\Documents\git\aikeiba\data\today_wide_predictions_log.txt</pre>
+      </details>
+
+      <button id="refreshBtn" type="button" class="refresh-btn">当日のレース選択を更新</button>
+      <div id="confirmPanel" class="confirm-panel" hidden>
+        <p>最新オッズを取得して更新しますか？（TARGET/JRA-VAN の更新後に実行）</p>
+        <div class="confirm-actions">
+          <button id="confirmRunBtn" type="button" class="control-btn">実行する</button>
+          <button id="cancelRunBtn" type="button" class="control-btn">やめる</button>
+        </div>
+      </div>
+      <p id="loadingText" class="loading-text" aria-live="polite"></p>
+      <p id="lastRunLabel" class="sub-text"></p>
+    </section>
+
+    <main class="content-layout">
+      <aside class="buy-panel">
+        <h2>当日の買い目</h2>
+        <ul id="buyList" class="buy-list"></ul>
+      </aside>
+
+      <section class="race-list-wrap">
+        <section id="raceList" class="race-list"></section>
+      </section>
+    </main>
+  </div>
 
   <template id="raceCardTemplate">
     <article class="race-card">
-      <div class="race-head">
-        <h3></h3>
-        <span class="badge"></span>
+      <div class="race-header">
+        <div>
+          <p class="race-time"></p>
+          <h2 class="race-title"></h2>
+        </div>
+        <span class="status-pill"></span>
       </div>
-      <dl class="race-meta"></dl>
-      <div class="race-actions">
-        <button class="secondary">詳細を見る</button>
-      </div>
+
+      <p class="pair-text"></p>
+      <p class="recommendation"></p>
+      <p class="mini-metrics"></p>
+
+      <dl class="meta-grid">
+        <div><dt>odds_cutoff</dt><dd class="odds-cutoff"></dd></div>
+        <div><dt>selection_reason</dt><dd class="reason-text"></dd></div>
+      </dl>
     </article>
   </template>
 
-  <script src="./app.js" type="module"></script>
+  <script src="./script.js?v=20260507_2140" type="module"></script>
+
 </body>
 </html>
+

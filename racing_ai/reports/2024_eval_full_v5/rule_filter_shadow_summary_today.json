@@ -1,0 +1,13 @@
+{
+  "input_file": "C:\\Users\\HND2205\\Documents\\git\\aikeiba\\racing_ai\\reports\\pair_shadow_pair_comparison_expanded_20260412.csv",
+  "original_rule_candidate_count": 12,
+  "filtered_rule_candidate_count": 2,
+  "removed_candidate_count": 10,
+  "buy_reduction_rate": 0.8333333333333334,
+  "avg_pair_value_score_filtered": 0.0644928181299229,
+  "avg_pair_edge_filtered": 0.09134260681884275,
+  "race_count_with_filtered_candidates": 2,
+  "race_count_zero_after_filter": 4,
+  "value_threshold": 0.0591,
+  "edge_threshold": 0.02
+}

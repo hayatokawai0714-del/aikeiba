@@ -1,0 +1,7 @@
+# results_backfill_source_audit
+
+                source_name  exists  row_count  race_count  finish_position_available        available_dates                      key_columns  can_backfill_finish_position                                                                notes
+                 db.results    True     234609     17110.0                       True 2021-01-05..2026-04-26 race_id,horse_no,finish_position                          True                     Primary source. Current quality issue suspected.
+           db.feature_store    True      44901         NaN                      False                                                 various                         False                 Only usable if finish_position exists in this table.
+            raw.results.csv    True        275         NaN                       True 2025-04-20..2026-04-12        race_id,umaban,finish_pos                          True Needs validation because some exports may be malformed placeholders.
+modeling.pair_learning_base    True      69983     14002.0                       True                                     race_id,pair labels                         False  Pair-level label only; cannot directly reconstruct finish_position.

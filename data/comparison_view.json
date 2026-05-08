@@ -1,0 +1,283 @@
+{
+  "dataset_name": "final_v3_20260301_0412b",
+  "task_name": "top3",
+  "dataset_fingerprint": "3676dfac74b0633585bbada9f804d44359daf5e563ddf0e97392a1bba6a1fece",
+  "comparison_status": "ok",
+  "comparison_created_at": "2026-04-20T07:43:03",
+  "experiment_count": 3,
+  "valid_experiment_count": 3,
+  "mismatch_experiment_count": 0,
+  "missing_calibration_count": 0,
+  "valid_roi_experiment_count": 3,
+  "valid_hit_rate_experiment_count": 3,
+  "valid_buy_races_experiment_count": 3,
+  "valid_total_return_experiment_count": 3,
+  "best_summary": {
+    "best_logloss_after": {
+      "experiment_name": "stability_plus_pace",
+      "model_version": "top3_stability_plus_pace_v3",
+      "value": 0.2740356055286408
+    },
+    "best_brier_after": {
+      "experiment_name": "stability",
+      "model_version": "top3_stability_v3",
+      "value": 0.08937590992089342
+    },
+    "best_ece_after": {
+      "experiment_name": "stability_plus_pace",
+      "model_version": "top3_stability_plus_pace_v3",
+      "value": 4.1871118082523367e-10
+    },
+    "best_roi": {
+      "experiment_name": "stability",
+      "model_version": "top3_stability_v3",
+      "value": 1.1927272727272726
+    },
+    "best_hit_rate": {
+      "experiment_name": "baseline",
+      "model_version": "top3_baseline_v3",
+      "value": 0.05714285714285714
+    },
+    "best_buy_races": {
+      "experiment_name": "stability",
+      "model_version": "top3_stability_v3",
+      "value": 11.0
+    }
+  },
+  "leaderboard": [
+    {
+      "experiment_name": "baseline",
+      "model_version": "top3_baseline_v3",
+      "feature_set": "baseline",
+      "feature_snapshot_version": "fs_v1",
+      "dataset_fingerprint": "3676dfac74b0633585bbada9f804d44359daf5e563ddf0e97392a1bba6a1fece",
+      "comparison_status": "ok",
+      "has_calibration": true,
+      "logloss_after": 0.42656018095699966,
+      "brier_after": 0.14396052174787252,
+      "ece_after": 5.462872166387736e-10,
+      "roi": 0.2,
+      "hit_rate": 0.05714285714285714,
+      "buy_races": 7.0,
+      "total_bets": 35.0,
+      "hit_bets": 2.0,
+      "total_return_yen": 700.0,
+      "total_bet_yen": 3500.0,
+      "max_losing_streak": 26.0,
+      "logloss_delta": -0.05151463648656107,
+      "brier_delta": -0.010763532443489987,
+      "ece_delta": -0.0748368415499936,
+      "calibration_method": "isotonic",
+      "missing_inputs": [],
+      "feature_importance_summary_path": "data\\models_experiments\\top3\\top3_baseline_v3\\feature_importance_summary.json"
+    },
+    {
+      "experiment_name": "stability",
+      "model_version": "top3_stability_v3",
+      "feature_set": "stability",
+      "feature_snapshot_version": "fs_v1",
+      "dataset_fingerprint": "3676dfac74b0633585bbada9f804d44359daf5e563ddf0e97392a1bba6a1fece",
+      "comparison_status": "ok",
+      "has_calibration": true,
+      "logloss_after": 0.27436236201653363,
+      "brier_after": 0.08937590992089342,
+      "ece_after": 9.15930695933556e-10,
+      "roi": 1.1927272727272726,
+      "hit_rate": 0.05454545454545454,
+      "buy_races": 11.0,
+      "total_bets": 55.0,
+      "hit_bets": 3.0,
+      "total_return_yen": 6560.0,
+      "total_bet_yen": 5500.0,
+      "max_losing_streak": 28.0,
+      "logloss_delta": -0.033124111698808856,
+      "brier_delta": -0.004747120273934577,
+      "ece_delta": -0.0532346270961659,
+      "calibration_method": "isotonic",
+      "missing_inputs": [],
+      "feature_importance_summary_path": "data\\models_experiments\\top3\\top3_stability_v3\\feature_importance_summary.json"
+    },
+    {
+      "experiment_name": "stability_plus_pace",
+      "model_version": "top3_stability_plus_pace_v3",
+      "feature_set": "stability_plus_pace",
+      "feature_snapshot_version": "fs_v1",
+      "dataset_fingerprint": "3676dfac74b0633585bbada9f804d44359daf5e563ddf0e97392a1bba6a1fece",
+      "comparison_status": "ok",
+      "has_calibration": true,
+      "logloss_after": 0.2740356055286408,
+      "brier_after": 0.08940307552819642,
+      "ece_after": 4.1871118082523367e-10,
+      "roi": 1.1927272727272726,
+      "hit_rate": 0.05454545454545454,
+      "buy_races": 11.0,
+      "total_bets": 55.0,
+      "hit_bets": 3.0,
+      "total_return_yen": 6560.0,
+      "total_bet_yen": 5500.0,
+      "max_losing_streak": 28.0,
+      "logloss_delta": -0.018334497053848264,
+      "brier_delta": -0.0031890053334271695,
+      "ece_delta": -0.035444770553942954,
+      "calibration_method": "isotonic",
+      "missing_inputs": [],
+      "feature_importance_summary_path": "data\\models_experiments\\top3\\top3_stability_plus_pace_v3\\feature_importance_summary.json"
+    }
+  ],
+  "ranking_views": {
+    "by_logloss_after": [
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": 0.2740356055286408
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": 0.27436236201653363
+      },
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": 0.42656018095699966
+      }
+    ],
+    "by_brier_after": [
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": 0.08937590992089342
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": 0.08940307552819642
+      },
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": 0.14396052174787252
+      }
+    ],
+    "by_ece_after": [
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": 4.1871118082523367e-10
+      },
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": 5.462872166387736e-10
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": 9.15930695933556e-10
+      }
+    ],
+    "by_roi": [
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": 1.1927272727272726
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": 1.1927272727272726
+      },
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": 0.2
+      }
+    ],
+    "by_hit_rate": [
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": 0.05714285714285714
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": 0.05454545454545454
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": 0.05454545454545454
+      }
+    ],
+    "by_logloss_delta": [
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": -0.05151463648656107
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": -0.033124111698808856
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": -0.018334497053848264
+      }
+    ],
+    "by_brier_delta": [
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": -0.010763532443489987
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": -0.004747120273934577
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": -0.0031890053334271695
+      }
+    ],
+    "by_ece_delta": [
+      {
+        "experiment_name": "baseline",
+        "model_version": "top3_baseline_v3",
+        "value": -0.0748368415499936
+      },
+      {
+        "experiment_name": "stability",
+        "model_version": "top3_stability_v3",
+        "value": -0.0532346270961659
+      },
+      {
+        "experiment_name": "stability_plus_pace",
+        "model_version": "top3_stability_plus_pace_v3",
+        "value": -0.035444770553942954
+      }
+    ]
+  },
+  "issues_summary": {
+    "mismatch_experiments": [],
+    "missing_calibration_experiments": [],
+    "missing_run_summary_experiments": [],
+    "skipped_from_best_selection": [],
+    "mismatch_reasons_summary": {}
+  },
+  "source_paths": {
+    "comparison_report_json_path": "data\\reports\\final_20260410_v3\\comparison_report.json",
+    "comparison_report_csv_path": "data\\reports\\final_20260410_v3\\comparison_report.csv",
+    "dataset_manifest_path": "data\\datasets\\final_v3_20260301_0412b\\dataset_manifest.json",
+    "feature_importance_summary_paths": [
+      "data\\models_experiments\\top3\\top3_baseline_v3\\feature_importance_summary.json",
+      "data\\models_experiments\\top3\\top3_stability_plus_pace_v3\\feature_importance_summary.json",
+      "data\\models_experiments\\top3\\top3_stability_v3\\feature_importance_summary.json"
+    ]
+  },
+  "created_at": "2026-04-20T07:43:03"
+}

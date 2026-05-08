@@ -36,6 +36,8 @@ def export_for_dashboard(
     model_version: str,
     odds_snapshot_version: str,
     allow_no_wide_odds: bool,
+    decision_density_top3_max: float = 1.35,
+    decision_gap12_min: float = 0.003,
 ) -> dict[str, object]:
     """
     MVP export:
@@ -134,7 +136,11 @@ def export_for_dashboard(
             buy_flag = False
             reason = "no_predictions"
         else:
-            decision = decide_buy_or_skip(p_top3=list(p_top3_dict.values()))
+            decision = decide_buy_or_skip(
+                p_top3=list(p_top3_dict.values()),
+                density_top3_max=decision_density_top3_max,
+                gap12_min=decision_gap12_min,
+            )
             buy_flag = decision.buy_flag
             reason = decision.reason
 

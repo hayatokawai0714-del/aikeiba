@@ -1,0 +1,9 @@
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS command_name VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS raw_dir VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS status VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS required_files VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS missing_files VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS raw_precheck_log_path VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS run_summary_path VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS daily_cycle_summary_path VARCHAR;
+ALTER TABLE daily_cycle_run_log ADD COLUMN IF NOT EXISTS generated_at TIMESTAMP;

@@ -20,7 +20,7 @@ RANK_SCORE_MAP = {1: 1.0, 2: 0.8, 3: 0.6, 4: 0.4}
 class InputPaths:
     entries: Path
     races: Path
-    odds: Path
+    odds: Path | None
 
 
 def parse_args() -> argparse.Namespace:
@@ -32,6 +32,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--entries", default="")
     parser.add_argument("--races", default="")
     parser.add_argument("--odds", default="")
+    parser.add_argument("--odds-latest", default=r"C:\Users\HND2205\Documents\git\aikeiba\racing_ai\data\normalized\odds_latest.csv")
     parser.add_argument("--normalized-root", default=r"C:\Users\HND2205\Documents\git\aikeiba\racing_ai\data\normalized")
     parser.add_argument("--out", default=r"C:\TXT\today_wide_predictions.csv")
     parser.add_argument("--log-out", default=r"C:\TXT\today_wide_predictions_log.txt")
@@ -69,17 +70,20 @@ def find_input_set_for_date(normalized_root: Path, today_date: pd.Timestamp) -> 
         entries = d / "entries.csv"
         races = d / "races.csv"
         odds = d / "odds.csv"
-        if entries.exists() and races.exists() and odds.exists():
+        if entries.exists() and races.exists():
             candidates.append((entries, races, odds))
     if not candidates:
         raise SystemExit(f"No input set found for today-date={date_folder} under: {normalized_root}")
     entries, races, odds = candidates[0]
-    return InputPaths(entries=entries, races=races, odds=odds)
+    return InputPaths(entries=entries, races=races, odds=odds if odds.exists() else None)
 
 
 def resolve_inputs(args: argparse.Namespace, today_date: pd.Timestamp) -> InputPaths:
-    if args.entries and args.races and args.odds:
-        return InputPaths(entries=Path(args.entries), races=Path(args.races), odds=Path(args.odds))
+    if args.entries and args.races:
+        odds_path = Path(args.odds) if args.odds else None
+        if odds_path is not None and not odds_path.exists():
+            odds_path = None
+        return InputPaths(entries=Path(args.entries), races=Path(args.races), odds=odds_path)
     return find_input_set_for_date(Path(args.normalized_root), today_date)
 
 
@@ -199,10 +203,17 @@ def build_history_table(pop_path: Path, encoding: str) -> pd.DataFrame:
     return pop
 
 
-def prepare_today_frame(paths: InputPaths, today_date: pd.Timestamp, cutoff_utc: pd.Timestamp) -> tuple[pd.DataFrame, dict[str, int]]:
+def prepare_today_frame(
+    paths: InputPaths,
+    today_date: pd.Timestamp,
+    cutoff_utc: pd.Timestamp,
+    odds_latest_path: Path | None = None,
+) -> tuple[pd.DataFrame, dict[str, int]]:
     entries = pd.read_csv(paths.entries, encoding="utf-8-sig", low_memory=False)
     races = pd.read_csv(paths.races, encoding="utf-8-sig", low_memory=False)
-    odds = pd.read_csv(paths.odds, encoding="utf-8-sig", low_memory=False)
+    odds_base = pd.DataFrame(columns=["race_id", "captured_at", "odds_type", "horse_no", "odds_value"])
+    if paths.odds is not None and paths.odds.exists():
+        odds_base = pd.read_csv(paths.odds, encoding="utf-8-sig", low_memory=False)
 
     entries["race_id"] = entries["race_id"].astype(str)
     entries["horse_no"] = to_float(entries["horse_no"]).astype("Int64")
@@ -230,6 +241,18 @@ def prepare_today_frame(paths: InputPaths, today_date: pd.Timestamp, cutoff_utc:
     base["field_size"] = field_size
 
     # win odds snapshot: use latest captured_at per race
+    odds = odds_base.copy()
+    latest_rows = 0
+    latest_fetched_at_max = None
+    if odds_latest_path is not None and odds_latest_path.exists():
+        odds_latest = pd.read_csv(odds_latest_path, encoding="utf-8", low_memory=False)
+        required_latest = {"race_id", "captured_at", "odds_type", "horse_no", "odds_value"}
+        if required_latest.issubset(set(odds_latest.columns)):
+            if "fetched_at" in odds_latest.columns:
+                latest_fetched_at_max = pd.to_datetime(odds_latest["fetched_at"], errors="coerce").max()
+            latest_rows = len(odds_latest)
+            odds = pd.concat([odds_latest, odds_base], ignore_index=True, sort=False)
+
     odds["race_id"] = odds["race_id"].astype(str)
     odds["captured_at"] = pd.to_datetime(odds["captured_at"], errors="coerce", utc=True)
     odds["odds_value"] = to_float(odds["odds_value"])
@@ -263,6 +286,10 @@ def prepare_today_frame(paths: InputPaths, today_date: pd.Timestamp, cutoff_utc:
         "used_odds_rows": used_odds_rows,
         "excluded_odds_rows": excluded_odds_rows,
         "total_odds_rows_before_cutoff": total_odds_rows,
+        "latest_odds_rows": int(latest_rows),
+        "latest_fetched_at_max": None if pd.isna(latest_fetched_at_max) else str(latest_fetched_at_max),
+        "odds_latest_path": str(odds_latest_path) if odds_latest_path else "",
+        "odds_missing": int(used_odds_rows == 0),
     }
     return base, odds_stats
 
@@ -324,6 +351,8 @@ def score_today(
     top3_medians: dict[str, float],
     ability_model: lgb.LGBMClassifier,
     ability_medians: dict[str, float],
+    *,
+    odds_missing: bool,
 ) -> pd.DataFrame:
     df = today_df.copy()
     for c in ["pop_rank", "distance", "field_size"]:
@@ -347,25 +376,35 @@ def score_today(
         df[c] = df[c].fillna(ability_medians[c])
     df["ability_top3_prob"] = ability_model.predict_proba(df[FEATURES_PHASE1 + FEATURES_PHASE2])[:, 1]
 
-    df["market_prob"] = np.where(df["win_odds"] > 0, 1.0 / df["win_odds"], np.nan)
-    race_market_med = df.groupby("race_id", dropna=False)["market_prob"].transform("median")
-    global_market_med = float(df["market_prob"].median()) if df["market_prob"].notna().any() else 0.0
-    df["market_prob"] = df["market_prob"].fillna(race_market_med).fillna(global_market_med)
-    df["ability_gap"] = df["ability_top3_prob"] - df["market_prob"]
-    df["value_gap"] = df["pred_top3"] - df["market_prob"]
+    if odds_missing:
+        df["market_prob"] = np.nan
+        df["ability_gap"] = np.nan
+        df["value_gap"] = np.nan
+        df["value_gap_rank"] = 9999
+        df["rank_score"] = 0.2
+        df["value_gap_z"] = 0.0
+        df["value_score_v1"] = df["pred_top3"]
+        df["value_score"] = df["pred_top3"]
+    else:
+        df["market_prob"] = np.where(df["win_odds"] > 0, 1.0 / df["win_odds"], np.nan)
+        race_market_med = df.groupby("race_id", dropna=False)["market_prob"].transform("median")
+        global_market_med = float(df["market_prob"].median()) if df["market_prob"].notna().any() else 0.0
+        df["market_prob"] = df["market_prob"].fillna(race_market_med).fillna(global_market_med)
+        df["ability_gap"] = df["ability_top3_prob"] - df["market_prob"]
+        df["value_gap"] = df["pred_top3"] - df["market_prob"]
 
-    df["value_gap_rank"] = (
-        df.groupby("race_id", dropna=False)["value_gap"]
-        .rank(method="first", ascending=False)
-        .fillna(9999)
-        .astype(int)
-    )
-    df["rank_score"] = df["value_gap_rank"].map(RANK_SCORE_MAP).fillna(0.2)
-    race_mean = df.groupby("race_id", dropna=False)["value_gap"].transform("mean")
-    race_std = df.groupby("race_id", dropna=False)["value_gap"].transform(lambda s: s.std(ddof=0)).fillna(0.0)
-    df["value_gap_z"] = np.where(race_std > 0, (df["value_gap"] - race_mean) / race_std, 0.0)
-    df["value_score_v1"] = 0.6 * df["value_gap_z"] + 0.4 * df["rank_score"]
-    df["value_score"] = 0.7 * df["value_score_v1"] + 0.3 * df["ability_gap"]
+        df["value_gap_rank"] = (
+            df.groupby("race_id", dropna=False)["value_gap"]
+            .rank(method="first", ascending=False)
+            .fillna(9999)
+            .astype(int)
+        )
+        df["rank_score"] = df["value_gap_rank"].map(RANK_SCORE_MAP).fillna(0.2)
+        race_mean = df.groupby("race_id", dropna=False)["value_gap"].transform("mean")
+        race_std = df.groupby("race_id", dropna=False)["value_gap"].transform(lambda s: s.std(ddof=0)).fillna(0.0)
+        df["value_gap_z"] = np.where(race_std > 0, (df["value_gap"] - race_mean) / race_std, 0.0)
+        df["value_score_v1"] = 0.6 * df["value_gap_z"] + 0.4 * df["rank_score"]
+        df["value_score"] = 0.7 * df["value_score_v1"] + 0.3 * df["ability_gap"]
     df["pred_top3_rank"] = (
         df.groupby("race_id", dropna=False)["pred_top3"]
         .rank(method="first", ascending=False)
@@ -434,9 +473,17 @@ def main() -> int:
     top3_model, top3_medians = train_top3_model(history_df, args.seed)
     ability_model, ability_medians = train_ability_model(history_df, args.seed)
 
-    today, odds_stats = prepare_today_frame(input_paths, today_date, cutoff_utc)
+    odds_latest_path = Path(args.odds_latest) if args.odds_latest else None
+    today, odds_stats = prepare_today_frame(input_paths, today_date, cutoff_utc, odds_latest_path=odds_latest_path)
     today = compute_today_history_features(today, hist_table)
-    scored = score_today(today, top3_model, top3_medians, ability_model, ability_medians)
+    scored = score_today(
+        today,
+        top3_model,
+        top3_medians,
+        ability_model,
+        ability_medians,
+        odds_missing=bool(odds_stats.get("odds_missing", 0)),
+    )
     scored = apply_race_selection(scored)
     scored = attach_reason(scored)
     scored["today_date"] = today_date.strftime("%Y-%m-%d")
@@ -467,7 +514,7 @@ def main() -> int:
         "model_version_ability=phase2_ability_v1",
         f"input_entries={input_paths.entries}",
         f"input_races={input_paths.races}",
-        f"input_odds={input_paths.odds}",
+        f"input_odds={input_paths.odds if input_paths.odds is not None else 'MISSING'}",
         f"input_history_dataset={args.history_dataset}",
         f"input_population={args.population}",
         f"rows_entries_used={len(today)}",
@@ -475,7 +522,11 @@ def main() -> int:
         f"used_odds_rows={odds_stats['used_odds_rows']}",
         f"excluded_odds_rows={odds_stats['excluded_odds_rows']}",
         f"total_odds_rows_before_cutoff={odds_stats['total_odds_rows_before_cutoff']}",
+        f"latest_odds_path={odds_stats['odds_latest_path']}",
+        f"latest_odds_rows={odds_stats['latest_odds_rows']}",
+        f"latest_fetched_at_max={odds_stats['latest_fetched_at_max']}",
         f"odds_latest_captured_at_max={pd.to_datetime(out_df['odds_captured_at'], errors='coerce').max()}",
+        f"warning={'odds_missing' if odds_stats['odds_missing'] else ''}",
         "missing_rules=track_condition->UNKNOWN,jockey_name->UNKNOWN,numeric->train_median",
         "future_info_rule=history rows filtered by race_date < target race_date",
     ]

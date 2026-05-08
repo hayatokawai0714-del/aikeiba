@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-04-29T12:30:25",
+  "grid_start_date": "2026-04-10",
+  "grid_end_date": "2026-04-12",
+  "model_version": "top3_stability_plus_pace_v3",
+  "feature_set_version": "fs_v1",
+  "feature_set_version_source": "model_meta",
+  "density_values": [
+    1.35
+  ],
+  "gap12_values": [
+    0.003
+  ],
+  "ai_weight_values": [
+    0.65
+  ],
+  "selected_best_params": {
+    "ai_weight": 0.65,
+    "density_top3_max": 1.35,
+    "gap12_min": 0.003
+  },
+  "selection_metric": "roi",
+  "warning_if_used_for_same_period_prediction": "Do not apply best params to predictions evaluated on the same grid period.",
+  "apply_start_date": null,
+  "apply_end_date": null
+}

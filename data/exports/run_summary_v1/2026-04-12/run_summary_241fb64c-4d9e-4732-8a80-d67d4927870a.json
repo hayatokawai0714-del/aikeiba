@@ -1,0 +1,480 @@
+{
+  "summary_schema_version": "run_summary.v1",
+  "created_at": "2026-05-01T09:13:01",
+  "race_date": "2026-04-12",
+  "run_id": "241fb64c-4d9e-4732-8a80-d67d4927870a",
+  "experiment_name": "top3_stability_plus_pace_v3",
+  "model_version": "top3_stability_plus_pace_v3",
+  "feature_snapshot_version": "fs_v1",
+  "dataset_fingerprint": "2e805d7dc0d50a57849a6cd062b04204dbd2239291576a355ba6f2176b97c0fc",
+  "status": "stop",
+  "stop_reason": "sum_top3_extreme:20260412-FUK-01R:0.074;sum_top3_extreme:20260412-FUK-02R:0.458;sum_top3_extreme:20260412-FUK-03R:0.203;sum_top3_extreme:20260412-FUK-05R:0.396;sum_top3_extreme:20260412-FUK-06R:0.233;sum_top3_extreme:20260412-FUK-07R:0.370;sum_top3_extreme:20260412-FUK-08R:0.079;sum_top3_extreme:20260412-FUK-09R:0.279;sum_top3_extreme:20260412-FUK-12R:0.299;sum_top3_extreme:20260412-HAN-01R:0.437;sum_top3_extreme:20260412-HAN-02R:0.396;sum_top3_extreme:20260412-HAN-03R:0.285;sum_top3_extreme:20260412-HAN-04R:0.437;sum_top3_extreme:20260412-HAN-05R:0.059;sum_top3_extreme:20260412-HAN-06R:0.356;sum_top3_extreme:20260412-HAN-07R:0.054;sum_top3_extreme:20260412-HAN-08R:0.375;sum_top3_extreme:20260412-HAN-12R:0.079;sum_top3_extreme:20260412-NAK-01R:0.361;sum_top3_extreme:20260412-NAK-02R:0.079;sum_top3_extreme:20260412-NAK-03R:0.264;sum_top3_extreme:20260412-NAK-05R:0.299;sum_top3_extreme:20260412-NAK-06R:0.309;sum_top3_extreme:20260412-NAK-08R:0.458;sum_top3_extreme:20260412-NAK-11R:0.136;sum_top3_extreme:20260412-NAK-12R:0.141",
+  "warnings": [
+    "race_meta_invalid_count:7",
+    "sum_top3_unusual:20260412-FUK-04R:0.678",
+    "sum_top3_unusual:20260412-NAK-04R:0.503",
+    "sum_top3_unusual:20260412-NAK-07R:0.534"
+  ],
+  "roi": null,
+  "hit_rate": null,
+  "buy_races": null,
+  "total_bets": null,
+  "hit_bets": null,
+  "total_return_yen": null,
+  "total_bet_yen": null,
+  "max_losing_streak": null,
+  "calibration_summary_path": null,
+  "feature_importance_summary_path": null,
+  "snapshot_version": "manual_20260412",
+  "odds_snapshot_version": "odds_v1",
+  "doctor_overall_status": "stop",
+  "stop_check_codes": [
+    "sum_top3_unusual"
+  ],
+  "warning_count": 4,
+  "model_dynamic_buy_race_count": null,
+  "model_dynamic_skip_race_count": null,
+  "model_dynamic_selected_pair_count": null,
+  "avg_pair_edge_selected": null,
+  "rule_model_overlap_avg": null,
+  "model_dynamic_skip_reason_counts": null,
+  "doctor_result_paths": {
+    "json": "racing_ai\\data\\exports\\doctor_result.json",
+    "csv": "racing_ai\\data\\exports\\doctor_result.csv"
+  },
+  "decision_settings": {
+    "enable_value_skip": false,
+    "min_ai_market_gap": 0.0,
+    "enable_market_overrated_skip": false,
+    "max_market_overrated_top_count": 3,
+    "enable_pair_ev_skip": false,
+    "min_pair_value_score": 0.0,
+    "decision_ai_weight": 0.65,
+    "density_top3_threshold": 1.35,
+    "gap12_threshold": 0.003,
+    "pair_score_version": "v1_simple_gap_bonus",
+    "pair_model_version": "pair_reranker_ts_v4",
+    "shadow_mode": true,
+    "model_dynamic_min_score": 0.08,
+    "model_dynamic_min_edge": 0.0,
+    "model_dynamic_min_gap": 0.01,
+    "model_dynamic_default_k": 5,
+    "model_dynamic_min_k": 1,
+    "model_dynamic_max_k": 5,
+    "probability_gate_mode": "strict",
+    "race_meta_policy": "skip",
+    "generated_at": "2026-05-01T09:13:01"
+  },
+  "probability_gate_mode": "strict",
+  "probability_gate_stop_count": 26,
+  "probability_gate_warn_count": 3,
+  "probability_gate_reasons": [
+    "sum_top3_extreme:20260412-FUK-01R:0.074",
+    "sum_top3_extreme:20260412-FUK-02R:0.458",
+    "sum_top3_extreme:20260412-FUK-03R:0.203",
+    "sum_top3_extreme:20260412-FUK-05R:0.396",
+    "sum_top3_extreme:20260412-FUK-06R:0.233",
+    "sum_top3_extreme:20260412-FUK-07R:0.370",
+    "sum_top3_extreme:20260412-FUK-08R:0.079",
+    "sum_top3_extreme:20260412-FUK-09R:0.279",
+    "sum_top3_extreme:20260412-FUK-12R:0.299",
+    "sum_top3_extreme:20260412-HAN-01R:0.437",
+    "sum_top3_extreme:20260412-HAN-02R:0.396",
+    "sum_top3_extreme:20260412-HAN-03R:0.285",
+    "sum_top3_extreme:20260412-HAN-04R:0.437",
+    "sum_top3_extreme:20260412-HAN-05R:0.059",
+    "sum_top3_extreme:20260412-HAN-06R:0.356",
+    "sum_top3_extreme:20260412-HAN-07R:0.054",
+    "sum_top3_extreme:20260412-HAN-08R:0.375",
+    "sum_top3_extreme:20260412-HAN-12R:0.079",
+    "sum_top3_extreme:20260412-NAK-01R:0.361",
+    "sum_top3_extreme:20260412-NAK-02R:0.079",
+    "sum_top3_extreme:20260412-NAK-03R:0.264",
+    "sum_top3_extreme:20260412-NAK-05R:0.299",
+    "sum_top3_extreme:20260412-NAK-06R:0.309",
+    "sum_top3_extreme:20260412-NAK-08R:0.458",
+    "sum_top3_extreme:20260412-NAK-11R:0.136",
+    "sum_top3_extreme:20260412-NAK-12R:0.141",
+    "sum_top3_unusual:20260412-FUK-04R:0.678",
+    "sum_top3_unusual:20260412-NAK-04R:0.503",
+    "sum_top3_unusual:20260412-NAK-07R:0.534"
+  ],
+  "race_meta_invalid_count": 7,
+  "race_meta_invalid_race_ids": [
+    "20260412-FUK-10R",
+    "20260412-FUK-11R",
+    "20260412-HAN-09R",
+    "20260412-HAN-10R",
+    "20260412-HAN-11R",
+    "20260412-NAK-09R",
+    "20260412-NAK-10R"
+  ],
+  "race_meta_invalid_reasons": [
+    {
+      "race_id": "20260412-FUK-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-FUK-11R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-09R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-11R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-NAK-09R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-NAK-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    }
+  ],
+  "race_metadata_validation_report_path": "racing_ai\\reports\\race_metadata_validation_report.md",
+  "raw_required_files_check": {
+    "required_files": [
+      "races.csv",
+      "entries.csv"
+    ],
+    "status": "pass",
+    "missing_files": []
+  },
+  "steps": {
+    "normalize": {
+      "normalized_dir": "data\\normalized\\manual_20260412\\2026-04-12",
+      "status": "ok",
+      "stop_reasons": [],
+      "warn_reasons": [],
+      "manifest_path": "data\\normalized\\manual_20260412\\2026-04-12\\manifest.json",
+      "written_files": [
+        "races.csv",
+        "entries.csv",
+        "results.csv",
+        "odds.csv",
+        "payouts.csv"
+      ]
+    },
+    "ingest": {
+      "in_dir": "data\\normalized\\manual_20260412\\2026-04-12",
+      "races_rows": 36,
+      "entries_rows": 526,
+      "results_rows": 494,
+      "odds_rows": 13714,
+      "payouts_rows": 726
+    },
+    "build_features": {
+      "race_date": "2026-04-12",
+      "rows": 526,
+      "meta": {
+        "feature_generated_at": "2026-05-01T09:12:55",
+        "source_race_date_max": "2026-04-11",
+        "feature_snapshot_version": "fs_v1",
+        "dataset_fingerprint": "fc35b8a5c6d93368abe00b4da309a361228b8ebecf523b293ad8f2af06d3664f",
+        "odds_snapshot_version": null
+      }
+    },
+    "race_metadata_validation": {
+      "policy": "skip",
+      "invalid_count": 7,
+      "invalid_race_ids": [
+        "20260412-FUK-10R",
+        "20260412-FUK-11R",
+        "20260412-HAN-09R",
+        "20260412-HAN-10R",
+        "20260412-HAN-11R",
+        "20260412-NAK-09R",
+        "20260412-NAK-10R"
+      ],
+      "report_path": "racing_ai\\reports\\race_metadata_validation_report.md"
+    },
+    "doctor": {
+      "should_stop": false,
+      "stop_reasons": [],
+      "warn_reasons": [],
+      "stats": {
+        "race_date": "2026-04-12",
+        "n_races": 36,
+        "n_entries": 526,
+        "horse_id_attach_rate": 1.0,
+        "odds_rows": 27428,
+        "odds_attach_rate": 52.14448669201521,
+        "field_size_min": 7,
+        "field_size_max": 18
+      }
+    },
+    "infer_top3": {
+      "race_date": "2026-04-12",
+      "rows": 444,
+      "model_meta": {
+        "model_version": "top3_stability_plus_pace_v3",
+        "feature_set_version": "fs_v1",
+        "train_start_date": "2025-04-20",
+        "train_end_date": "2026-03-31",
+        "calibration_start_date": "2026-04-03",
+        "calibration_end_date": "2026-04-04",
+        "validation_start_date": "2026-04-05",
+        "validation_end_date": "2026-04-10",
+        "model_created_at": "2026-04-29T12:30:15",
+        "target": "is_top3",
+        "objective": "binary",
+        "calibration_method": "isotonic",
+        "source_table": "feature_store + results",
+        "row_count_train": 41305,
+        "row_count_calibration": 684,
+        "row_count_validation": 868,
+        "meta_warnings": [],
+        "feature_set": "stability_plus_pace",
+        "dataset_fingerprint": "56fe335afd0bad04ca8b0b78bbc09b7678866d01dc906a45c0e2ff8a6d7b673f",
+        "split_config_path": "racing_ai\\config\\train_top3_split.yaml",
+        "split_config_hash": "75782a2e99fd54a49b73e33b58ca42d06b2d486d619ef006a75a5a22e8796201",
+        "task": "top3",
+        "feature_snapshot_version": "fs_v1",
+        "valid_start_date": "2026-04-05",
+        "valid_end_date": "2026-04-10",
+        "created_at": "2026-04-29T12:30:15",
+        "notes": "feature_set=stability_plus_pace"
+      },
+      "inference_timestamp": "2026-05-01T09:13:01"
+    },
+    "post_infer_gate": {
+      "status": "stop",
+      "mode": "strict",
+      "stop_reasons": [
+        "sum_top3_extreme:20260412-FUK-01R:0.074",
+        "sum_top3_extreme:20260412-FUK-02R:0.458",
+        "sum_top3_extreme:20260412-FUK-03R:0.203",
+        "sum_top3_extreme:20260412-FUK-05R:0.396",
+        "sum_top3_extreme:20260412-FUK-06R:0.233",
+        "sum_top3_extreme:20260412-FUK-07R:0.370",
+        "sum_top3_extreme:20260412-FUK-08R:0.079",
+        "sum_top3_extreme:20260412-FUK-09R:0.279",
+        "sum_top3_extreme:20260412-FUK-12R:0.299",
+        "sum_top3_extreme:20260412-HAN-01R:0.437",
+        "sum_top3_extreme:20260412-HAN-02R:0.396",
+        "sum_top3_extreme:20260412-HAN-03R:0.285",
+        "sum_top3_extreme:20260412-HAN-04R:0.437",
+        "sum_top3_extreme:20260412-HAN-05R:0.059",
+        "sum_top3_extreme:20260412-HAN-06R:0.356",
+        "sum_top3_extreme:20260412-HAN-07R:0.054",
+        "sum_top3_extreme:20260412-HAN-08R:0.375",
+        "sum_top3_extreme:20260412-HAN-12R:0.079",
+        "sum_top3_extreme:20260412-NAK-01R:0.361",
+        "sum_top3_extreme:20260412-NAK-02R:0.079",
+        "sum_top3_extreme:20260412-NAK-03R:0.264",
+        "sum_top3_extreme:20260412-NAK-05R:0.299",
+        "sum_top3_extreme:20260412-NAK-06R:0.309",
+        "sum_top3_extreme:20260412-NAK-08R:0.458",
+        "sum_top3_extreme:20260412-NAK-11R:0.136",
+        "sum_top3_extreme:20260412-NAK-12R:0.141"
+      ],
+      "warn_reasons": [
+        "sum_top3_unusual:20260412-FUK-04R:0.678",
+        "sum_top3_unusual:20260412-NAK-04R:0.503",
+        "sum_top3_unusual:20260412-NAK-07R:0.534"
+      ],
+      "stop_count": 26,
+      "warn_count": 3,
+      "all_reasons": [
+        "sum_top3_extreme:20260412-FUK-01R:0.074",
+        "sum_top3_extreme:20260412-FUK-02R:0.458",
+        "sum_top3_extreme:20260412-FUK-03R:0.203",
+        "sum_top3_extreme:20260412-FUK-05R:0.396",
+        "sum_top3_extreme:20260412-FUK-06R:0.233",
+        "sum_top3_extreme:20260412-FUK-07R:0.370",
+        "sum_top3_extreme:20260412-FUK-08R:0.079",
+        "sum_top3_extreme:20260412-FUK-09R:0.279",
+        "sum_top3_extreme:20260412-FUK-12R:0.299",
+        "sum_top3_extreme:20260412-HAN-01R:0.437",
+        "sum_top3_extreme:20260412-HAN-02R:0.396",
+        "sum_top3_extreme:20260412-HAN-03R:0.285",
+        "sum_top3_extreme:20260412-HAN-04R:0.437",
+        "sum_top3_extreme:20260412-HAN-05R:0.059",
+        "sum_top3_extreme:20260412-HAN-06R:0.356",
+        "sum_top3_extreme:20260412-HAN-07R:0.054",
+        "sum_top3_extreme:20260412-HAN-08R:0.375",
+        "sum_top3_extreme:20260412-HAN-12R:0.079",
+        "sum_top3_extreme:20260412-NAK-01R:0.361",
+        "sum_top3_extreme:20260412-NAK-02R:0.079",
+        "sum_top3_extreme:20260412-NAK-03R:0.264",
+        "sum_top3_extreme:20260412-NAK-05R:0.299",
+        "sum_top3_extreme:20260412-NAK-06R:0.309",
+        "sum_top3_extreme:20260412-NAK-08R:0.458",
+        "sum_top3_extreme:20260412-NAK-11R:0.136",
+        "sum_top3_extreme:20260412-NAK-12R:0.141",
+        "sum_top3_unusual:20260412-FUK-04R:0.678",
+        "sum_top3_unusual:20260412-NAK-04R:0.503",
+        "sum_top3_unusual:20260412-NAK-07R:0.534"
+      ],
+      "race_sums": [
+        {
+          "race_id": "20260412-FUK-01R",
+          "sum_top3": 0.07425742574257425,
+          "n": 15
+        },
+        {
+          "race_id": "20260412-FUK-02R",
+          "sum_top3": 0.457766028780182,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-03R",
+          "sum_top3": 0.20306489247650883,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-04R",
+          "sum_top3": 0.6780093256953409,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-05R",
+          "sum_top3": 0.3958375429379673,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-06R",
+          "sum_top3": 0.23257223681551828,
+          "n": 15
+        },
+        {
+          "race_id": "20260412-FUK-07R",
+          "sum_top3": 0.37047888462315626,
+          "n": 15
+        },
+        {
+          "race_id": "20260412-FUK-08R",
+          "sum_top3": 0.07920792079207921,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-09R",
+          "sum_top3": 0.27904305444193195,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-FUK-12R",
+          "sum_top3": 0.2994512177072381,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-HAN-01R",
+          "sum_top3": 0.437357865514876,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-HAN-02R",
+          "sum_top3": 0.39583754293796725,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-HAN-03R",
+          "sum_top3": 0.28459973255872323,
+          "n": 13
+        },
+        {
+          "race_id": "20260412-HAN-04R",
+          "sum_top3": 0.437357865514876,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-HAN-05R",
+          "sum_top3": 0.059405940594059396,
+          "n": 12
+        },
+        {
+          "race_id": "20260412-HAN-06R",
+          "sum_top3": 0.35642920849994786,
+          "n": 15
+        },
+        {
+          "race_id": "20260412-HAN-07R",
+          "sum_top3": 0.05445544554455445,
+          "n": 11
+        },
+        {
+          "race_id": "20260412-HAN-08R",
+          "sum_top3": 0.3754293796726612,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-HAN-12R",
+          "sum_top3": 0.07920792079207921,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-01R",
+          "sum_top3": 0.36137970354945287,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-02R",
+          "sum_top3": 0.07920792079207921,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-03R",
+          "sum_top3": 0.26419156929341703,
+          "n": 13
+        },
+        {
+          "race_id": "20260412-NAK-04R",
+          "sum_top3": 0.5034350373812891,
+          "n": 14
+        },
+        {
+          "race_id": "20260412-NAK-05R",
+          "sum_top3": 0.29945121770723804,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-06R",
+          "sum_top3": 0.30935220780624795,
+          "n": 18
+        },
+        {
+          "race_id": "20260412-NAK-07R",
+          "sum_top3": 0.5337441907456052,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-08R",
+          "sum_top3": 0.4577660287801821,
+          "n": 16
+        },
+        {
+          "race_id": "20260412-NAK-11R",
+          "sum_top3": 0.13618591158478904,
+          "n": 15
+        },
+        {
+          "race_id": "20260412-NAK-12R",
+          "sum_top3": 0.14113640663429405,
+          "n": 16
+        }
+      ]
+    }
+  }
+}

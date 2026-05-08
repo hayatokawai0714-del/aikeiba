@@ -1,0 +1,6 @@
+# Results Join Coverage Audit
+
+ race_date  candidate_race_count  results_race_count  matched_race_count  unmatched_candidate_race_count  candidate_pair_count  rows_with_both_horse_results  rows_missing_horse1_result  rows_missing_horse2_result  rows_missing_both_results  actual_wide_hit_non_null_count  actual_wide_hit_coverage_rate
+2026-04-10                    36                  36                  36                               0                  1579                           226                         380                         367                        606                             226                       0.143129
+2026-04-11                    36                  36                  36                               0                  1579                          1307                         141                         124                          7                            1307                       0.827739
+2026-04-12                    36                  36                  36                               0                  1579                          1218                         147                         197                         17                            1218                       0.771374

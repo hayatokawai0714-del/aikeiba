@@ -1,0 +1,6 @@
+# expanded_candidate_availability_20260418_20260426
+
+ race_date  candidate_pairs_exists  candidate_pairs_rows  candidate_pairs_expanded_exists  candidate_pairs_expanded_rows  expanded_unique_race_pair_count  pair_shadow_pair_comparison_expanded_exists  run_summary_exists  expanded_candidate_pair_count  expanded_pair_model_score_non_null_count
+2026-04-18                    True                   0.0                             True                           1516                           1516.0                                         True                True                           1516                                      1516
+2026-04-25                   False                   NaN                             True                           1564                           1564.0                                         True               False                           1564                                      1564
+2026-04-26                   False                   NaN                             True                              0                              NaN                                         True               False                              0                                         0

@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-04-29T12:30:25",
+  "start_date": "2026-04-10",
+  "end_date": "2026-04-12",
+  "model_version": "top3_stability_plus_pace_v3",
+  "details": [
+    {
+      "ai_weight": 0.65,
+      "density_top3_max": 1.35,
+      "gap12_min": 0.003,
+      "monthly_roi": {
+        "2026-04": 0.4672727272727273
+      },
+      "popularity_bucket_roi": {
+        "1人気": 1.4,
+        "2-3人気": 0.759375,
+        "4-5人気": 0.0,
+        "6-9人気": 0.0
+      },
+      "popularity_source_counts": {
+        "odds.estimated_rank": 55
+      },
+      "venue_roi": {
+        "UNKNOWN": 0.4672727272727273
+      },
+      "distance_bucket_roi": {
+        "UNKNOWN": 0.6866666666666666,
+        "middle": 0.46,
+        "mile": 0.5,
+        "sprint": 0.28
+      },
+      "surface_roi": {
+        "UNKNOWN": 0.5933333333333334,
+        "ダート": 0.0,
+        "芝": 0.395
+      },
+      "field_size_bucket_roi": {
+        "large": 0.42,
+        "small": 0.94
+      },
+      "ai_market_gap_bucket_roi": {
+        "neg_large": 0.803125,
+        "neg_small": 0.0,
+        "pos_large": 0.0,
+        "pos_small": 0.0
+      },
+      "race_count_by_skip_reason": {
+        "BUY_OK": 11,
+        "SKIP_DENSITY_TOO_HIGH": 96,
+        "SKIP_GAP_TOO_SMALL": 1
+      },
+      "unknown_raw_venue_values": [
+        "3",
+        "9"
+      ],
+      "unknown_raw_surface_values": [
+        "60",
+        "ダ"
+      ]
+    }
+  ]
+}

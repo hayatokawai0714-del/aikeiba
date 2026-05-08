@@ -1,0 +1,4 @@
+# validate_external_odds_2024
+
+ row_count  race_count  race_date_count                                              odds_type_row_count  place_rows  place_max_rows  horse_no_valid_rate  odds_value_numeric_rate  duplicate_key_count  entries_race_id_match_rate  results_race_id_match_rate  existing_odds_overlap_count  insert_candidate_count rejected_reason_counts
+         5           1                1 {'place': 1, 'place_max': 1, 'wide': 1, 'wide_max': 1, 'win': 1}           1               1                  1.0                      1.0                    0                         1.0                         1.0                            0                       5                     {}

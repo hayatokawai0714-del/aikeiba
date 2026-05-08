@@ -1,0 +1,108 @@
+{
+  "summary_schema_version": "run_summary.v1",
+  "created_at": "2026-05-01T12:49:42",
+  "race_date": "2026-04-10",
+  "run_id": "3c9f4e1e-525e-47ae-b006-53ba2615083a",
+  "experiment_name": "top3_stability_plus_pace_v3",
+  "model_version": "top3_stability_plus_pace_v3",
+  "feature_snapshot_version": "fs_v1",
+  "dataset_fingerprint": "9158db7bc047f1ecb6b702b8773b91b42eee4569f8dc47544a174e1dddbc982f",
+  "status": "stop",
+  "stop_reason": "missing_raw_file:races.csv;missing_raw_file:entries.csv",
+  "warnings": [],
+  "roi": null,
+  "hit_rate": null,
+  "buy_races": null,
+  "total_bets": null,
+  "hit_bets": null,
+  "total_return_yen": null,
+  "total_bet_yen": null,
+  "max_losing_streak": null,
+  "calibration_summary_path": null,
+  "feature_importance_summary_path": null,
+  "snapshot_version": "manual_20260410",
+  "odds_snapshot_version": "odds_v1",
+  "doctor_overall_status": "stop",
+  "stop_check_codes": [
+    "required_raw_missing",
+    "required_table_empty"
+  ],
+  "warning_count": 2,
+  "model_dynamic_buy_race_count": null,
+  "model_dynamic_skip_race_count": null,
+  "model_dynamic_selected_pair_count": null,
+  "avg_pair_edge_selected": null,
+  "rule_model_overlap_avg": null,
+  "model_dynamic_skip_reason_counts": null,
+  "doctor_result_paths": {
+    "json": "racing_ai\\data\\doctor_result.json",
+    "csv": "racing_ai\\data\\doctor_result.csv"
+  },
+  "decision_settings": {
+    "enable_value_skip": false,
+    "min_ai_market_gap": 0.0,
+    "enable_market_overrated_skip": false,
+    "max_market_overrated_top_count": 3,
+    "enable_pair_ev_skip": false,
+    "min_pair_value_score": 0.0,
+    "decision_ai_weight": 0.65,
+    "density_top3_threshold": 1.35,
+    "gap12_threshold": 0.003,
+    "pair_score_version": "v1_simple_gap_bonus",
+    "pair_model_version": "pair_reranker_ts_v4",
+    "shadow_mode": true,
+    "model_dynamic_min_score": 0.08,
+    "model_dynamic_min_edge": 0.0,
+    "model_dynamic_min_gap": 0.01,
+    "model_dynamic_default_k": 5,
+    "model_dynamic_min_k": 1,
+    "model_dynamic_max_k": 5,
+    "emit_expanded_candidates": true,
+    "expanded_top_horse_n": 10,
+    "expanded_ai_gap_horse_n": 10,
+    "expanded_max_pairs_per_race": 45,
+    "probability_gate_mode": "warn-only",
+    "race_meta_policy": "skip",
+    "generated_at": "2026-05-01T12:49:42"
+  },
+  "probability_gate_mode": "warn-only",
+  "probability_gate_stop_count": 0,
+  "probability_gate_warn_count": 0,
+  "probability_gate_reasons": [],
+  "race_meta_invalid_count": 0,
+  "race_meta_invalid_race_ids": [],
+  "race_meta_invalid_reasons": [],
+  "race_metadata_validation_report_path": "racing_ai\\reports\\race_metadata_validation_report.md",
+  "raw_required_files_check": {
+    "required_files": [
+      "races.csv",
+      "entries.csv"
+    ],
+    "status": "fail",
+    "missing_files": [
+      "races.csv",
+      "entries.csv"
+    ]
+  },
+  "steps": {
+    "normalize": {
+      "normalized_dir": "data\\normalized\\manual_20260410\\2026-04-10",
+      "status": "stop",
+      "stop_reasons": [
+        "missing_raw_file:races.csv",
+        "missing_raw_file:entries.csv"
+      ],
+      "warn_reasons": [],
+      "manifest_path": "data\\normalized\\manual_20260410\\2026-04-10\\manifest.json",
+      "written_files": []
+    }
+  },
+  "expanded_generation_attempted": true,
+  "expanded_generation_status": "skipped",
+  "expanded_generation_skipped_reason": "pipeline_stopped_before_decision",
+  "expanded_candidate_pairs_exists": false,
+  "expanded_pair_comparison_exists": false,
+  "expanded_race_comparison_exists": false,
+  "expanded_candidate_pair_count": null,
+  "expanded_non_rule_candidate_count": null
+}

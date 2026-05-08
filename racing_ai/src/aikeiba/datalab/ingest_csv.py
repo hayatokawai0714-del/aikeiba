@@ -49,14 +49,21 @@ def ingest_from_csv_dir(*, db: DuckDb, in_dir: Path) -> dict[str, Any]:
     if entries_path.exists():
         entries = _load_csv(entries_path)
         db.con.register("tmp_entries", entries)
-        db.execute("DELETE FROM entries WHERE (race_id, horse_no) IN (SELECT race_id, horse_no FROM tmp_entries)")
+        db.execute(
+            """
+            DELETE FROM entries
+            USING tmp_entries
+            WHERE entries.race_id = tmp_entries.race_id
+              AND entries.horse_no = cast(tmp_entries.horse_no as INTEGER)
+            """
+        )
         db.execute(
             """
             INSERT INTO entries(
-              race_id, horse_no, horse_id, horse_name, waku, sex, age, weight_carried, jockey_id, trainer_id, is_scratched, source_version
+              race_id, horse_no, horse_id, horse_name, waku, sex, age, weight_carried, jockey_id, jockey_name_raw, pop_rank, trainer_id, is_scratched, source_version
             )
             SELECT
-              race_id, horse_no, horse_id, horse_name, waku, sex, age, weight_carried, jockey_id, trainer_id, is_scratched, source_version
+              race_id, cast(horse_no as INTEGER), horse_id, horse_name, waku, sex, age, weight_carried, jockey_id, jockey_name_raw, pop_rank, trainer_id, is_scratched, source_version
             FROM tmp_entries
             """
         )
@@ -69,7 +76,14 @@ def ingest_from_csv_dir(*, db: DuckDb, in_dir: Path) -> dict[str, Any]:
     if results_path.exists():
         results = _load_csv(results_path)
         db.con.register("tmp_results", results)
-        db.execute("DELETE FROM results WHERE (race_id, horse_no) IN (SELECT race_id, horse_no FROM tmp_results)")
+        db.execute(
+            """
+            DELETE FROM results
+            USING tmp_results
+            WHERE results.race_id = tmp_results.race_id
+              AND results.horse_no = cast(tmp_results.horse_no as INTEGER)
+            """
+        )
         db.execute(
             """
             INSERT INTO results(
@@ -78,7 +92,7 @@ def ingest_from_csv_dir(*, db: DuckDb, in_dir: Path) -> dict[str, Any]:
               pop_rank, odds_win_final, source_version
             )
             SELECT
-              race_id, horse_no, finish_position, margin, last3f_time, last3f_rank,
+              race_id, cast(horse_no as INTEGER), finish_position, margin, last3f_time, last3f_rank,
               corner_pos_1, corner_pos_2, corner_pos_3, corner_pos_4,
               pop_rank, odds_win_final, source_version
             FROM tmp_results
@@ -99,10 +113,13 @@ def ingest_from_csv_dir(*, db: DuckDb, in_dir: Path) -> dict[str, Any]:
         db.execute(
             """
             DELETE FROM odds
-            WHERE (race_id, odds_snapshot_version, odds_type, horse_no, horse_no_a, horse_no_b)
-              IN (
-                SELECT race_id, odds_snapshot_version, odds_type, horse_no, horse_no_a, horse_no_b FROM tmp_odds
-              )
+            USING tmp_odds
+            WHERE odds.race_id = tmp_odds.race_id
+              AND odds.odds_snapshot_version = tmp_odds.odds_snapshot_version
+              AND odds.odds_type = tmp_odds.odds_type
+              AND odds.horse_no = cast(tmp_odds.horse_no as INTEGER)
+              AND odds.horse_no_a = cast(tmp_odds.horse_no_a as INTEGER)
+              AND odds.horse_no_b = cast(tmp_odds.horse_no_b as INTEGER)
             """
         )
         db.execute(
@@ -124,14 +141,22 @@ def ingest_from_csv_dir(*, db: DuckDb, in_dir: Path) -> dict[str, Any]:
     if payouts_path.exists():
         payouts = _load_csv(payouts_path)
         db.con.register("tmp_payouts", payouts)
-        db.execute("DELETE FROM payouts WHERE (race_id, bet_type, bet_key) IN (SELECT race_id, bet_type, bet_key FROM tmp_payouts)")
+        db.execute(
+            """
+            DELETE FROM payouts
+            USING tmp_payouts
+            WHERE payouts.race_id = tmp_payouts.race_id
+              AND payouts.bet_type = cast(tmp_payouts.bet_type as VARCHAR)
+              AND payouts.bet_key = cast(tmp_payouts.bet_key as VARCHAR)
+            """
+        )
         db.execute(
             """
             INSERT INTO payouts(
               race_id, bet_type, bet_key, payout, popularity, source_version
             )
             SELECT
-              race_id, bet_type, bet_key, payout, popularity, source_version
+              race_id, cast(bet_type as VARCHAR), cast(bet_key as VARCHAR), payout, popularity, source_version
             FROM tmp_payouts
             """
         )

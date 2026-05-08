@@ -1,0 +1,12 @@
+{
+  "race_date": "2026-04-01",
+  "model_version": "top3_stability_plus_pace_v3",
+  "raw_dir": "racing_ai\\data\\raw\\20260401_real",
+  "required_files": [
+    "races.csv",
+    "entries.csv"
+  ],
+  "missing_files": [],
+  "status": "pass",
+  "generated_at": "2026-04-29T13:43:20"
+}

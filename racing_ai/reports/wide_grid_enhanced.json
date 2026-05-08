@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-04-29T12:30:25",
+  "start_date": "2026-04-10",
+  "end_date": "2026-04-12",
+  "model_version": "top3_stability_plus_pace_v3",
+  "feature_set_version": "fs_v1",
+  "best": {
+    "ai_weight": 0.65,
+    "density_top3_max": 1.35,
+    "gap12_min": 0.003,
+    "bet_race_count": 11,
+    "bet_pair_count": 55,
+    "hit_count": 9,
+    "hit_rate": 0.16363636363636364,
+    "total_stake": 5500.0,
+    "total_return": 2570.0,
+    "roi": 0.4672727272727273,
+    "profit": -2930.0,
+    "avg_return_per_bet": 46.72727272727273,
+    "max_drawdown": -2930.0,
+    "monthly_roi": "{\"2026-04\": 0.4672727272727273}",
+    "popularity_bucket_roi": "{\"1人気\": 1.4, \"2-3人気\": 0.759375, \"4-5人気\": 0.0, \"6-9人気\": 0.0}",
+    "venue_roi": "{\"UNKNOWN\": 0.4672727272727273}",
+    "distance_bucket_roi": "{\"UNKNOWN\": 0.6866666666666666, \"middle\": 0.46, \"mile\": 0.5, \"sprint\": 0.28}",
+    "surface_roi": "{\"UNKNOWN\": 0.5933333333333334, \"ダート\": 0.0, \"芝\": 0.395}",
+    "field_size_bucket_roi": "{\"large\": 0.42, \"small\": 0.94}",
+    "ai_market_gap_bucket_roi": "{\"neg_large\": 0.803125, \"neg_small\": 0.0, \"pos_large\": 0.0, \"pos_small\": 0.0}",
+    "race_count_by_skip_reason": "{\"BUY_OK\": 11, \"SKIP_DENSITY_TOO_HIGH\": 96, \"SKIP_GAP_TOO_SMALL\": 1}",
+    "max_drawdown_method": "race_date_race_id_ordered_race_aggregate_pnl",
+    "popularity_source_counts": "{\"odds.estimated_rank\": 55}"
+  },
+  "grid_rows": 1,
+  "warnings": [],
+  "detail_json_path": "racing_ai\\reports\\wide_grid_enhanced_detail.json",
+  "popularity_source_audit_path": "racing_ai\\reports\\popularity_source_audit.parquet",
+  "grid_search_metadata_path": "racing_ai\\reports\\grid_search_metadata.json",
+  "grid_param_application_path": "racing_ai\\reports\\grid_param_application.json",
+  "venue_surface_normalization": {
+    "enabled": true,
+    "raw_columns_preserved": [
+      "raw_venue",
+      "raw_surface"
+    ]
+  },
+  "skip_reason_extra_settings": {
+    "enable_value_skip": false,
+    "min_ai_market_gap": null,
+    "enable_market_overrated_skip": false,
+    "max_market_overrated_top_count": null,
+    "enable_pair_ev_skip": false,
+    "min_pair_value_score": null
+  },
+  "max_drawdown_method": "race_date_race_id_ordered_race_aggregate_pnl",
+  "pair_score_in_production_candidates": true
+}

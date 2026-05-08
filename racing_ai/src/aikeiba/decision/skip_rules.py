@@ -31,7 +31,21 @@ def decide_buy_or_skip(
 
     top = np.sort(arr)[::-1]
     density = float(np.sum(top[:3])) if top.size >= 3 else float(np.sum(top))
-    gap12 = float(top[0] - top[1]) if top.size >= 2 else float("nan")
+    # Note: calibrated probabilities (e.g. isotonic) can produce ties across many horses.
+    # For "gap12" we want the separation between the best and the next *distinct* probability,
+    # otherwise gap12 becomes 0 for tied-top races and blocks everything.
+    if top.size >= 2:
+        top1 = float(top[0])
+        gap12 = float("nan")
+        for v in top[1:]:
+            vv = float(v)
+            if vv < top1 - 1e-12:
+                gap12 = float(top1 - vv)
+                break
+        if np.isnan(gap12):
+            gap12 = 0.0
+    else:
+        gap12 = float("nan")
 
     reasons = []
     if density > density_top3_max:

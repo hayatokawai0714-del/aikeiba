@@ -1,0 +1,16 @@
+# backfill_wide_payouts
+- mode: APPLY
+- dates: 9
+- total_new_insert_candidates: 0
+- total_applied_inserts: 0
+
+ race_date        source_name                                                         raw_payouts_csv  raw_row_count  meta_row_count  wide_row_count  wide_valid_row_count  invalid_wide_row_count  new_insert_candidate_count  applied_insert_count  skipped_existing_count                  status
+2026-04-03 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv              0               0               0                     0                       0                           0                     0                       0 no_source_rows_for_date
+2026-04-04 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv             72               0              72                    72                       0                           0                     0                      72                      ok
+2026-04-05 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv             72               0              72                    72                       0                           0                     0                      72                      ok
+2026-04-10 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv              0               0               0                     0                       0                           0                     0                       0 no_source_rows_for_date
+2026-04-11 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv            108               0             108                   108                       0                           0                     0                     108                      ok
+2026-04-12 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv            108               0             108                   108                       0                           0                     0                     108                      ok
+2026-04-18 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv            108               0             108                   108                       0                           0                     0                     108                      ok
+2026-04-25 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv            108               0             108                   108                       0                           0                     0                     108                      ok
+2026-04-26 target_2026_spring racing_ai\data\external\converted\external_wide_payouts_2026_spring.csv            108               0             108                   108                       0                           0                     0                     108                      ok

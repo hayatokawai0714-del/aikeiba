@@ -1,0 +1,15 @@
+﻿model_version: top3_stability_plus_pace_v3
+feature_set_version: fs_v1
+
+train:
+  start_date: null
+  end_date: "2026-03-31"
+
+calibration:
+  start_date: "2026-04-03"
+  end_date: "2026-04-04"
+  ratio_if_dates_missing: 0.5
+
+validation:
+  start_date: "2026-04-05"
+  end_date: "2026-04-10"

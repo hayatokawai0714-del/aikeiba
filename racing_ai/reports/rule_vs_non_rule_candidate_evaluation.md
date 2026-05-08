@@ -1,0 +1,7 @@
+# rule_vs_non_rule_candidate_evaluation
+
+ candidate_count  hit_count  hit_rate  total_payout    cost  roi_proxy  hit_label_coverage_rate  payout_coverage_rate  avg_payout_per_hit  avg_pair_model_score  avg_pair_value_score  avg_pair_market_implied_prob  avg_pair_edge  avg_pair_edge_ratio                     group
+              34        2.0  0.058824         250.0  3400.0   0.073529                 0.558824              0.617647          125.000000              0.248780              0.040121                      0.182082       0.066699                  NaN             rule_selected
+               0        NaN       NaN           NaN     0.0        NaN                      NaN                   NaN                 NaN                   NaN                   NaN                           NaN            NaN                  NaN       non_rule_model_top1
+               0        NaN       NaN           NaN     0.0        NaN                      NaN                   NaN                 NaN                   NaN                   NaN                           NaN            NaN                  NaN       non_rule_model_top3
+             187       22.0  0.117647       10850.0 18700.0   0.580214                 0.598930              0.636364          493.181818              0.370781              0.124036                      0.256066       0.114715                  NaN model_dynamic_non_overlap

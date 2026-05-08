@@ -1,0 +1,198 @@
+{
+  "summary_schema_version": "run_summary.v1",
+  "created_at": "2026-05-01T09:11:41",
+  "race_date": "2026-04-12",
+  "run_id": "ceb5854e-471f-4d3b-8d87-aef4fe553a25",
+  "experiment_name": "top3_stability_plus_pace_v3",
+  "model_version": "top3_stability_plus_pace_v3",
+  "feature_snapshot_version": "fs_v1",
+  "dataset_fingerprint": "2e805d7dc0d50a57849a6cd062b04204dbd2239291576a355ba6f2176b97c0fc",
+  "status": "stop",
+  "stop_reason": "exception:ValueError:pandas dtypes must be int, float or bool.\nFields with bad pandas dtypes: course_change: object, surface_change: object",
+  "warnings": [
+    "race_meta_invalid_count:7"
+  ],
+  "roi": null,
+  "hit_rate": null,
+  "buy_races": null,
+  "total_bets": null,
+  "hit_bets": null,
+  "total_return_yen": null,
+  "total_bet_yen": null,
+  "max_losing_streak": null,
+  "calibration_summary_path": null,
+  "feature_importance_summary_path": null,
+  "snapshot_version": "manual_20260412",
+  "odds_snapshot_version": "odds_v1",
+  "doctor_overall_status": "warn",
+  "stop_check_codes": [],
+  "warning_count": 1,
+  "model_dynamic_buy_race_count": null,
+  "model_dynamic_skip_race_count": null,
+  "model_dynamic_selected_pair_count": null,
+  "avg_pair_edge_selected": null,
+  "rule_model_overlap_avg": null,
+  "model_dynamic_skip_reason_counts": null,
+  "doctor_result_paths": {
+    "json": "racing_ai\\data\\exports\\doctor_result.json",
+    "csv": "racing_ai\\data\\exports\\doctor_result.csv"
+  },
+  "decision_settings": {
+    "enable_value_skip": false,
+    "min_ai_market_gap": 0.0,
+    "enable_market_overrated_skip": false,
+    "max_market_overrated_top_count": 3,
+    "enable_pair_ev_skip": false,
+    "min_pair_value_score": 0.0,
+    "decision_ai_weight": 0.65,
+    "density_top3_threshold": 1.35,
+    "gap12_threshold": 0.003,
+    "pair_score_version": "v1_simple_gap_bonus",
+    "pair_model_version": "pair_reranker_ts_v4",
+    "shadow_mode": true,
+    "model_dynamic_min_score": 0.08,
+    "model_dynamic_min_edge": 0.0,
+    "model_dynamic_min_gap": 0.01,
+    "model_dynamic_default_k": 5,
+    "model_dynamic_min_k": 1,
+    "model_dynamic_max_k": 5,
+    "probability_gate_mode": "strict",
+    "race_meta_policy": "skip",
+    "generated_at": "2026-05-01T09:11:41"
+  },
+  "probability_gate_mode": "strict",
+  "probability_gate_stop_count": 0,
+  "probability_gate_warn_count": 0,
+  "probability_gate_reasons": [],
+  "race_meta_invalid_count": 7,
+  "race_meta_invalid_race_ids": [
+    "20260412-FUK-10R",
+    "20260412-FUK-11R",
+    "20260412-HAN-09R",
+    "20260412-HAN-10R",
+    "20260412-HAN-11R",
+    "20260412-NAK-09R",
+    "20260412-NAK-10R"
+  ],
+  "race_meta_invalid_reasons": [
+    {
+      "race_id": "20260412-FUK-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-FUK-11R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-09R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-HAN-11R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-NAK-09R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    },
+    {
+      "race_id": "20260412-NAK-10R",
+      "reasons": [
+        "field_size_expected_le_0"
+      ]
+    }
+  ],
+  "race_metadata_validation_report_path": "racing_ai\\reports\\race_metadata_validation_report.md",
+  "raw_required_files_check": {
+    "required_files": [
+      "races.csv",
+      "entries.csv"
+    ],
+    "status": "pass",
+    "missing_files": []
+  },
+  "steps": {
+    "normalize": {
+      "normalized_dir": "data\\normalized\\manual_20260412\\2026-04-12",
+      "status": "ok",
+      "stop_reasons": [],
+      "warn_reasons": [],
+      "manifest_path": "data\\normalized\\manual_20260412\\2026-04-12\\manifest.json",
+      "written_files": [
+        "races.csv",
+        "entries.csv",
+        "results.csv",
+        "odds.csv",
+        "payouts.csv"
+      ]
+    },
+    "ingest": {
+      "in_dir": "data\\normalized\\manual_20260412\\2026-04-12",
+      "races_rows": 36,
+      "entries_rows": 526,
+      "results_rows": 494,
+      "odds_rows": 13714,
+      "payouts_rows": 726
+    },
+    "build_features": {
+      "race_date": "2026-04-12",
+      "rows": 526,
+      "meta": {
+        "feature_generated_at": "2026-05-01T09:11:35",
+        "source_race_date_max": "2026-04-11",
+        "feature_snapshot_version": "fs_v1",
+        "dataset_fingerprint": "fc35b8a5c6d93368abe00b4da309a361228b8ebecf523b293ad8f2af06d3664f",
+        "odds_snapshot_version": null
+      }
+    },
+    "race_metadata_validation": {
+      "policy": "skip",
+      "invalid_count": 7,
+      "invalid_race_ids": [
+        "20260412-FUK-10R",
+        "20260412-FUK-11R",
+        "20260412-HAN-09R",
+        "20260412-HAN-10R",
+        "20260412-HAN-11R",
+        "20260412-NAK-09R",
+        "20260412-NAK-10R"
+      ],
+      "report_path": "racing_ai\\reports\\race_metadata_validation_report.md"
+    },
+    "doctor": {
+      "should_stop": false,
+      "stop_reasons": [],
+      "warn_reasons": [],
+      "stats": {
+        "race_date": "2026-04-12",
+        "n_races": 36,
+        "n_entries": 526,
+        "horse_id_attach_rate": 1.0,
+        "odds_rows": 27428,
+        "odds_attach_rate": 52.14448669201521,
+        "field_size_min": 7,
+        "field_size_max": 18
+      }
+    },
+    "exception": {
+      "type": "ValueError",
+      "message": "pandas dtypes must be int, float or bool.\nFields with bad pandas dtypes: course_change: object, surface_change: object"
+    }
+  }
+}

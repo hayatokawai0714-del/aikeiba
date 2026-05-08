@@ -29,7 +29,13 @@ class NormalizeThresholds:
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
-    return pd.read_csv(path, encoding="utf-8")
+    last_error: Exception | None = None
+    for enc in ("utf-8-sig", "utf-8", "cp932"):
+        try:
+            return pd.read_csv(path, encoding=enc)
+        except Exception as exc:  # noqa: PERF203
+            last_error = exc
+    raise ValueError(f"failed to read csv: {path} ({last_error})")
 
 
 def _md5_file(path: Path) -> str:
@@ -106,6 +112,9 @@ def _normalize_races(df_raw: pd.DataFrame, target_race_date: str, snapshot_versi
 def _normalize_entries(df_raw: pd.DataFrame, snapshot_version: str) -> pd.DataFrame:
     df = _norm_columns(df_raw)
     race_id = _ensure_race_id(df)
+    # Keep jockey_name even when we can't resolve jockey_id (JV-Link direct exporter often only has name).
+    jockey_name_raw = _pick(df, ["jockey_name", "kishu_name", "kishu", "騎手"], default=None)
+
     out = pd.DataFrame(
         {
             "race_id": race_id.astype(str),
@@ -117,31 +126,61 @@ def _normalize_entries(df_raw: pd.DataFrame, snapshot_version: str) -> pd.DataFr
             "age": _pick(df, ["age"], default=None),
             "weight_carried": _pick(df, ["weight_carried", "futan"], default=None),
             "jockey_id": _pick(df, ["jockey_id", "kishu_id"], default=None),
+            "jockey_name_raw": jockey_name_raw,
             "trainer_id": _pick(df, ["trainer_id", "chokyoshi_id"], default=None),
             "is_scratched": _pick(df, ["is_scratched", "torikeshi"], default=False),
             "source_version": snapshot_version,
         }
     )
+
+    # Prefer explicit popularity if present; otherwise derive from odds (ascending).
+    # This is a pragmatic fallback for 2026Q1 where raw exporter has `odds` but `popularity` is missing/NaN.
+    if "pop_rank" not in out.columns:
+        out["pop_rank"] = None
+    pop = _pick(df, ["popularity", "ninki", "pop_rank"], default=None)
+    try:
+        pop_num = pd.to_numeric(pop, errors="coerce")
+        out.loc[pop_num.notna(), "pop_rank"] = pop_num[pop_num.notna()].astype(int).astype("Int64")
+    except Exception:
+        pass
+
+    if out["pop_rank"].isna().all():
+        odds = _pick(df, ["odds", "tansho_odds", "odds_win_final"], default=None)
+        odds_num = pd.to_numeric(odds, errors="coerce")
+        tmp = pd.DataFrame({"race_id": out["race_id"], "horse_no": out["horse_no"], "odds": odds_num})
+        # Rank only where odds exist; keep null otherwise.
+        tmp["rank"] = tmp.groupby("race_id")["odds"].rank(method="min", ascending=True)
+        out["pop_rank"] = tmp["rank"].round().astype("Int64")
+
     return out
 
 
 def _normalize_results(df_raw: pd.DataFrame, snapshot_version: str) -> pd.DataFrame:
     df = _norm_columns(df_raw)
     race_id = _ensure_race_id(df)
+    finish_position = _pick(df, ["finish_position", "finish_pos", "chakujun"], default=None)
+    # Defensive cleanup:
+    # - treat 0/negative as missing
+    # - treat obviously out-of-range values as missing (JV/Target parser drift etc.)
+    #   (central races should be <= 18; keep a bit of slack for edge cases)
+    finish_position = pd.to_numeric(finish_position, errors="coerce")
+    finish_position = finish_position.where((finish_position >= 1) & (finish_position <= 40))
+
     out = pd.DataFrame(
         {
             "race_id": race_id.astype(str),
             "horse_no": _pick(df, ["horse_no", "umaban"], default=0).fillna(0).astype(int),
-            "finish_position": _pick(df, ["finish_position", "chakujun"], default=None),
+            # Support both Aikeiba raw exports and JV-Link exporter outputs.
+            "finish_position": finish_position,
             "margin": _pick(df, ["margin", "chakusa"], default=None),
             "last3f_time": _pick(df, ["last3f_time", "agari3f"], default=None),
             "last3f_rank": _pick(df, ["last3f_rank", "agari_juni"], default=None),
-            "corner_pos_1": _pick(df, ["corner_pos_1"], default=None),
-            "corner_pos_2": _pick(df, ["corner_pos_2"], default=None),
-            "corner_pos_3": _pick(df, ["corner_pos_3"], default=None),
-            "corner_pos_4": _pick(df, ["corner_pos_4", "corner4"], default=None),
-            "pop_rank": _pick(df, ["pop_rank", "ninki"], default=None),
-            "odds_win_final": _pick(df, ["odds_win_final", "tansho_odds"], default=None),
+            "corner_pos_1": _pick(df, ["corner_pos_1", "corner1_pos"], default=None),
+            "corner_pos_2": _pick(df, ["corner_pos_2", "corner2_pos"], default=None),
+            "corner_pos_3": _pick(df, ["corner_pos_3", "corner3_pos"], default=None),
+            "corner_pos_4": _pick(df, ["corner_pos_4", "corner4_pos", "corner4"], default=None),
+            "pop_rank": _pick(df, ["pop_rank", "popularity", "ninki"], default=None),
+            "odds_win_final": _pick(df, ["odds_win_final", "odds", "tansho_odds"], default=None),
             "source_version": snapshot_version,
         }
     )
@@ -174,8 +213,8 @@ def _normalize_payouts(df_raw: pd.DataFrame, snapshot_version: str) -> pd.DataFr
         {
             "race_id": race_id.astype(str),
             "bet_type": _pick(df, ["bet_type"], default=None),
-            "bet_key": _pick(df, ["bet_key", "pair"], default=None),
-            "payout": _pick(df, ["payout"], default=None),
+            "bet_key": _pick(df, ["bet_key", "pair", "winning_combination", "kumi"], default=None),
+            "payout": _pick(df, ["payout", "payout_yen", "haraimodoshi"], default=None),
             "popularity": _pick(df, ["popularity"], default=None),
             "source_version": snapshot_version,
         }

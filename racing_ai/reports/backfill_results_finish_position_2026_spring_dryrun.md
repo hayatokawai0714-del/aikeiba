@@ -1,0 +1,18 @@
+# backfill_results_finish_position
+- mode: DRY_RUN
+- dates: 9
+- candidate_updates_null_only_total: 0
+- candidate_updates_invalid_only_total: 0
+- candidate_updates_mismatched_valid_total: 854
+- applied_updates_total: 0
+
+ race_date                      source_name                                                    raw_results_csv  raw_row_count  raw_invalid_finish_count  raw_valid_finish_count  candidate_updates_null_only  candidate_updates_invalid_only  applied_updates  skipped_no_change_count                  status  candidate_updates_mismatched_valid
+2026-04-03 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv              0                         0                       0                            0                               0                0                        0 no_source_rows_for_date                                 NaN
+2026-04-04 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            342                         2                     340                            0                               0                0                      340                      ok                                92.0
+2026-04-05 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            344                         4                     340                            0                               0                0                      340                      ok                                81.0
+2026-04-10 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv              0                         0                       0                            0                               0                0                        0 no_source_rows_for_date                                 NaN
+2026-04-11 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            526                         2                     524                            0                               0                0                      524                      ok                               149.0
+2026-04-12 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            522                         2                     520                            0                               0                0                      520                      ok                               141.0
+2026-04-18 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            483                         3                     480                            0                               0                0                      480                      ok                               115.0
+2026-04-25 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            509                         5                     504                            0                               0                0                      504                      ok                               143.0
+2026-04-26 external_results_csv_2026_spring racing_ai\data\external\converted\external_results_2026_spring.csv            527                         6                     521                            0                               0                0                      521                      ok                               133.0

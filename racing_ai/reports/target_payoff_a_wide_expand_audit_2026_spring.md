@@ -1,0 +1,4 @@
+# target_payoff_a_wide_expand_audit_2026_spring
+
+ race_count  races_with_wide_payout  wide_rows_count  avg_wide_rows_per_race  wide_key_normalization_success_count  wide_key_normalization_failed_count  payout_numeric_success_count  payout_numeric_failed_count key_format_patterns                                                                                                                                                                                                                         sample_wide_rows
+        264                     264              792                     3.0                                   792                                    0                           792                            0      {'03-07': 792} 20260411-FUK-01R:11-14:220 | 20260411-FUK-01R:04-11:870 | 20260411-FUK-01R:04-14:400 | 20260411-FUK-02R:04-06:470 | 20260411-FUK-02R:02-06:140 | 20260411-FUK-02R:02-04:420 | 20260411-FUK-03R:05-08:10720 | 20260411-FUK-03R:02-05:9230

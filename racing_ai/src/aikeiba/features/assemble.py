@@ -15,6 +15,8 @@ from aikeiba.domain.joins import (
     load_past_performances,
 )
 from aikeiba.features.base import SnapshotMeta
+from aikeiba.features.pace import build_pace_features
+from aikeiba.features.stability import build_stability_features
 
 
 def _now_iso() -> str:
@@ -125,14 +127,30 @@ def build_feature_store_snapshot(
         dist_change = None
         course_change = None
         surface_change = None
-        if prev and e["distance"] is not None and prev.distance is not None:
+        if (
+            prev
+            and e["distance"] is not None
+            and prev.distance is not None
+            and pd.notna(e["distance"])
+            and pd.notna(prev.distance)
+        ):
             dist_change = int(e["distance"] - prev.distance)
-            course_change = bool(e["venue"] != prev.venue)
-            surface_change = bool(e["surface"] != prev.surface)
+            course_change = 1.0 if (e["venue"] != prev.venue) else 0.0
+            surface_change = 1.0 if (e["surface"] != prev.surface) else 0.0
 
         finish_pos_std_5 = std_float([float(r.finish_position) if r.finish_position is not None else None for r in last5])
         big_loss_count_10 = int(sum(1 for r in last10 if r.margin is not None and r.margin >= 2.0))
         itb_rate_10 = mean_float([1.0 if (r.finish_position is not None and r.finish_position <= 5) else 0.0 for r in last10]) if len(last10) > 0 else None
+        stability = build_stability_features(
+            history=history,
+            current_distance=e["distance"],
+            current_venue=e["venue"],
+            min_history=5,
+        )
+        pace = build_pace_features(
+            history=history,
+            min_history=5,
+        )
 
         field_size = field_sizes.get(race_id, 0)
         horse_no_rel = float(e["horse_no"]) / float(field_size) if field_size else None
@@ -165,6 +183,34 @@ def build_feature_store_snapshot(
                 "finish_pos_std_5": finish_pos_std_5,
                 "big_loss_count_10": big_loss_count_10,
                 "itb_rate_10": itb_rate_10,
+                "finish_pos_std_last5": stability["finish_pos_std_last5"],
+                "finish_pos_std_last10": stability["finish_pos_std_last10"],
+                "margin_std_last5": stability["margin_std_last5"],
+                "margin_std_last10": stability["margin_std_last10"],
+                "top3_rate_last5": stability["top3_rate_last5"],
+                "top3_rate_last10": stability["top3_rate_last10"],
+                "board_rate_last5": stability["board_rate_last5"],
+                "board_rate_last10": stability["board_rate_last10"],
+                "big_loss_rate_last5": stability["big_loss_rate_last5"],
+                "big_loss_rate_last10": stability["big_loss_rate_last10"],
+                "worst_finish_last5": stability["worst_finish_last5"],
+                "worst_finish_last10": stability["worst_finish_last10"],
+                "top3_rate_same_distance_bucket": stability["top3_rate_same_distance_bucket"],
+                "top3_rate_same_course": stability["top3_rate_same_course"],
+                "finish_pos_std_same_course": stability["finish_pos_std_same_course"],
+                "margin_std_same_course": stability["margin_std_same_course"],
+                "consecutive_bad_runs": stability["consecutive_bad_runs"],
+                "consecutive_top3_runs": stability["consecutive_top3_runs"],
+                "avg_finish_pos_last5": stability["avg_finish_pos_last5"],
+                "avg_margin_last5": stability["avg_margin_last5"],
+                "min_history_flag": stability["min_history_flag"],
+                "avg_corner4_pos_last5": pace["avg_corner4_pos_last5"],
+                "corner4_pos_std_last5": pace["corner4_pos_std_last5"],
+                "front_runner_rate_last5": pace["front_runner_rate_last5"],
+                "closer_rate_last5": pace["closer_rate_last5"],
+                "avg_last3f_rank_last5": pace["avg_last3f_rank_last5"],
+                "pace_finish_delta_last5": pace["pace_finish_delta_last5"],
+                "pace_min_history_flag": pace["pace_min_history_flag"],
                 "waku": e["waku"],
                 "horse_no_rel": horse_no_rel,
                 "jockey_top3_rate_1y": jockey_rate,
@@ -181,7 +227,9 @@ def build_feature_store_snapshot(
         # Use DuckDB's relation insert via pandas conversion.
         df = pd.DataFrame(rows)
         db.con.register("tmp_feature_rows", df)
-        db.execute("INSERT INTO feature_store SELECT * FROM tmp_feature_rows")
+        columns = list(df.columns)
+        cols_sql = ", ".join(columns)
+        db.execute(f"INSERT INTO feature_store ({cols_sql}) SELECT {cols_sql} FROM tmp_feature_rows")
         db.con.unregister("tmp_feature_rows")
 
     return {"race_date": race_date, "rows": len(rows), "meta": asdict(meta)}

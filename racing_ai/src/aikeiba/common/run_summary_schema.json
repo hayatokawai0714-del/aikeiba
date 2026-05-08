@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aikeiba/run_summary.v1.schema.json",
+  "title": "Aikeiba Run Summary v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "summary_schema_version",
+    "created_at",
+    "race_date",
+    "run_id",
+    "experiment_name",
+    "model_version",
+    "feature_snapshot_version",
+    "dataset_fingerprint",
+    "status",
+    "stop_reason",
+    "warnings",
+    "roi",
+    "hit_rate",
+    "buy_races",
+    "total_bets",
+    "hit_bets",
+    "total_return_yen",
+    "total_bet_yen",
+    "max_losing_streak",
+    "calibration_summary_path",
+    "feature_importance_summary_path"
+  ],
+  "properties": {
+    "summary_schema_version": {
+      "type": "string",
+      "const": "run_summary.v1"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "race_date": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "experiment_name": {
+      "type": "string"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "feature_snapshot_version": {
+      "type": "string"
+    },
+    "dataset_fingerprint": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "warn", "stop"]
+    },
+    "stop_reason": {
+      "type": ["string", "null"]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "roi": {
+      "type": ["number", "null"]
+    },
+    "hit_rate": {
+      "type": ["number", "null"]
+    },
+    "buy_races": {
+      "type": ["number", "null"]
+    },
+    "total_bets": {
+      "type": ["number", "null"]
+    },
+    "hit_bets": {
+      "type": ["number", "null"]
+    },
+    "total_return_yen": {
+      "type": ["number", "null"]
+    },
+    "total_bet_yen": {
+      "type": ["number", "null"]
+    },
+    "max_losing_streak": {
+      "type": ["number", "null"]
+    },
+    "calibration_summary_path": {
+      "type": ["string", "null"]
+    },
+    "feature_importance_summary_path": {
+      "type": ["string", "null"]
+    }
+  }
+}

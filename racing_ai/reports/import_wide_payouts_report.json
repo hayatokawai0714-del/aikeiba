@@ -1,0 +1,21 @@
+{
+  "generated_at":"2026-04-29T19:39:46",
+  "db_path":"racing_ai\\data\\warehouse\\aikeiba.duckdb",
+  "input_csv":"racing_ai\\reports\\sample_wide_payouts_import.csv",
+  "on_conflict":"skip",
+  "dry_run":true,
+  "input_rows":2,
+  "wide_rows_after_filter":2,
+  "invalid_rows":0,
+  "input_duplicate_dropped":1,
+  "clean_rows":1,
+  "conflict_count":0,
+  "inserted_rows":1,
+  "replaced_rows":0,
+  "skipped_conflict_rows":0,
+  "post_wide_min_race_date":"2025-04-20 00:00:00",
+  "post_wide_max_race_date":"2026-04-26 00:00:00",
+  "post_wide_rows":9831,
+  "post_wide_race_count":3271,
+  "post_wide_race_date_count":107
+}

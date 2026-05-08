@@ -1,0 +1,17 @@
+{
+  "grid_start_date": "2026-04-10",
+  "grid_end_date": "2026-04-12",
+  "selected_best_params": {
+    "ai_weight": 0.65,
+    "density_top3_max": 1.35,
+    "gap12_min": 0.003
+  },
+  "selection_metric": "roi",
+  "apply_start_date": null,
+  "apply_end_date": null,
+  "applied_model_version": "top3_stability_plus_pace_v3",
+  "feature_set_version": "fs_v1",
+  "generated_at": "2026-04-29T12:30:25",
+  "is_safe_temporal_application": null,
+  "manual_check_required": true
+}

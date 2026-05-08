@@ -1,0 +1,5 @@
+# validate_external_results_payouts
+
+     dataset  row_count  race_count  required_columns_present  race_id_normalizable  umaban_normalizable  finish_position_normalizable  duplicate_race_umaban_count  entries_race_id_match_rate  entries_umaban_pair_match_rate  existing_db_diff_count  backfill_possible_count  bet_type_wide_rate  bet_key_normalizable  duplicate_race_bet_key_count  payout_numeric_coverage
+     results          1           1                      True                   1.0                  1.0                           1.0                          0.0                         1.0                             1.0                       1                        1                 NaN                   NaN                           NaN                      NaN
+wide_payouts          1           1                      True                   1.0                  NaN                           NaN                          NaN                         NaN                             NaN                       1                        1                 1.0                   1.0                           0.0                      1.0

@@ -1,0 +1,25 @@
+{
+  "candidate_pairs_path": "racing_ai\\data\\race_day\\2026-04-12\\top3_stability_plus_pace_v3\\candidate_pairs.parquet",
+  "row_count": 130,
+  "required_dynamic_columns": [
+    "pair_edge",
+    "model_dynamic_final_score",
+    "model_dynamic_selected_flag",
+    "model_dynamic_skip_reason",
+    "model_dynamic_rank",
+    "pair_model_score_rank_in_race",
+    "pair_model_score_gap_to_next"
+  ],
+  "missing_columns": [
+    "pair_edge",
+    "model_dynamic_final_score",
+    "model_dynamic_selected_flag",
+    "model_dynamic_skip_reason",
+    "model_dynamic_rank",
+    "pair_model_score_rank_in_race",
+    "pair_model_score_gap_to_next"
+  ],
+  "checks": {},
+  "warnings": [],
+  "status": "warn"
+}

@@ -1,0 +1,9 @@
+# validate_external_results_payouts
+
+     dataset  row_count  race_count  required_columns_present  race_id_normalizable  umaban_normalizable  finish_position_normalizable  finish_position_natural_range_rate  invalid_finish_position_count  duplicate_race_umaban_count  entries_race_id_match_rate  entries_umaban_pair_match_rate  existing_db_diff_count  backfill_possible_count  bet_type_wide_rate  bet_key_normalizable  duplicate_race_bet_key_count  payout_numeric_coverage
+     results       3743         264                      True                   1.0                  1.0                      0.993321                            0.993321                           25.0                          0.0                    0.869089                        0.836495                     808                     3718                 NaN                   NaN                           NaN                      NaN
+wide_payouts        792         264                      True                   1.0                  NaN                           NaN                                 NaN                            NaN                          NaN                         NaN                             NaN                     108                      792                 1.0                   1.0                           0.0                      1.0
+
+## Results Anomalies
+- anomalous_race_count: 26
+- anomalous_race_ids (sample up to 30): 20260404-NAK-09R, 20260404-NAK-11R, 20260405-HAN-02R, 20260405-NAK-01R, 20260405-NAK-04R, 20260405-NAK-05R, 20260411-FUK-10R, 20260411-HAN-04R, 20260411-NAK-05R, 20260412-FUK-04R, 20260412-NAK-02R, 20260418-HAN-05R, 20260418-HAN-06R, 20260418-NAK-01R, 20260419-NAK-08R, 20260425-FUK-11R, 20260425-KYO-03R, 20260425-KYO-04R, 20260425-KYO-06R, 20260425-TOK-11R, 20260426-FUK-02R, 20260426-KYO-02R, 20260426-KYO-04R, 20260426-TOK-01R, 20260426-TOK-10R, 20260426-TOK-11R

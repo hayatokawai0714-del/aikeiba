@@ -53,7 +53,7 @@ def load_past_performances(
         JOIN races r ON r.race_id = res.race_id
         JOIN entries e ON e.race_id = res.race_id AND e.horse_no = res.horse_no
         WHERE e.horse_id = ?
-          AND r.race_date <= ?
+          AND r.race_date <= cast(? as DATE)
         ORDER BY r.race_date DESC
         LIMIT ?
         """,
